@@ -404,3 +404,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Sensitive config files
+appsettings.json
+appsettings.*.json
+secrets.json
+.env
+
+!appsettings.template.json
