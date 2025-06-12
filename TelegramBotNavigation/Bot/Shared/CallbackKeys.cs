@@ -28,10 +28,23 @@
         public const string ItemEditMessage = "nav.item.edit.message";
         public const string NavigationSetDefault = "nav.set_default";
         public const string NavigationHeaderEdit = "nav.header_edit";
+        public const string NavigationHeaderImageEdit = "nav.header_image_edit";
         public const string ShowMessage = "sm";
         public const string ItemRequestDelete = "nav.item.request_delete";
         public const string NavigationMessage = "nav.message";
         public const string UsersManage = "users";
         public const string UserDetails = "user.details";
+        public const string SupportRequest = "support.request";
+        public const string SupportReply = "support.reply";
+        public const string Settings = "settings";
+        public const string SupportResolve = "support.resolve";
+        public const string DeleteHeaderImage = "nav.header_image.delete";
+        public const string DeleteHeaderImageConfirmation = "delete.header_image.confirmation";
+        public const string DeleteHeaderConfirmation = "delete.header.confirmation";
+        public const string DeleteHeader = "nav.header.delete";
+        public const string LanguageSettings = "lang.settings";
+        public const string LanguageMove = "lang.settings.move";
+        public const string SetAdmin = "admin.set";
+        public const string UnsetAdmin = "admin.unset";
     }
 }

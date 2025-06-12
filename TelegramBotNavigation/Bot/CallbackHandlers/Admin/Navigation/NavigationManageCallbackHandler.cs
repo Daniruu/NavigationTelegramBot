@@ -6,6 +6,7 @@ using TelegramBotNavigation.Repositories.Interfaces;
 using TelegramBotNavigation.Services.Interfaces;
 using static TelegramBotNavigation.Bot.Shared.LocalizationKeys;
 using static TelegramBotNavigation.Bot.Shared.CallbackKeys;
+using TelegramBotNavigation.Services.Sessions;
 
 namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
 {
@@ -19,6 +20,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
         private readonly ITelegramMessageService _messageService;
         private readonly ILocalizationManager _localizer;
         private readonly IMenuRepository _menuRepository;
+        private readonly ISessionManager _sessionManager;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public NavigationManageCallbackHandler(
             IUserRepository userRepository, 
@@ -26,7 +29,9 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             ILogger<NavigationManageCallbackHandler> logger,
             ITelegramMessageService messageService,
             ILocalizationManager localizer,
-            IMenuRepository menuRepository)
+            IMenuRepository menuRepository,
+            ISessionManager sessionManager,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -34,6 +39,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             _messageService = messageService;
             _localizer = localizer;
             _menuRepository = menuRepository;
+            _sessionManager = sessionManager;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -45,12 +52,13 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             var user = await _userRepository.GetByIdAsync(userId);
             if (user == null) return;
 
+            await _sessionManager.ClearSessionAsync(userId);
+
             if (!_userService.IsAdmin(user))
             {
                 _logger.LogWarning("Access denied for user {UserId} when trying to access admin callback.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 

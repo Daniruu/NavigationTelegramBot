@@ -33,7 +33,7 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
 
             if (!string.IsNullOrWhiteSpace(header))
             {
-                text = header;
+                text = $"<b>{header}</b>";
             }
             else if (headerImage == null)
             {

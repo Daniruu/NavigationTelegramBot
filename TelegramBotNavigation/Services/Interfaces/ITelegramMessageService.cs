@@ -7,6 +7,7 @@ namespace TelegramBotNavigation.Services.Interfaces
     {
         Task<Message> SendTemplateAsync(long chatId, TelegramTemplate template, CancellationToken cancellationToken);
         Task<Message> SendTemplateAsync(string channelUsername, TelegramTemplate template, CancellationToken cancellationToken);
+        Task<Message> SendTemplateInTopicAsync(long chatId, int topicId, TelegramTemplate template, CancellationToken cancellationToken);
         Task EditTemplateAsync(long chatId, int messageId, TelegramTemplate template, CancellationToken cancellationToken);
     }
 }

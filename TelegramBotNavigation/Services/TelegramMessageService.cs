@@ -1,4 +1,5 @@
-﻿using Telegram.Bot;
+﻿using System.Threading;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using TelegramBotNavigation.Bot.Templates;
@@ -18,6 +19,7 @@ namespace TelegramBotNavigation.Services
             _bot = bot;
             _logger = logger;
         }
+
         public async Task<Message> SendTemplateAsync(long chatId, TelegramTemplate template, CancellationToken cancellationToken)
         {
             ReplyMarkup? markup = template.ReplyMarkup
@@ -77,6 +79,46 @@ namespace TelegramBotNavigation.Services
                     disableNotification: template.DisableNotification,
                     cancellationToken: cancellationToken
                 );
+            }
+        }
+
+        public async Task<Message> SendTemplateInTopicAsync(long chatId, int topicId, TelegramTemplate template, CancellationToken cancellationToken)
+        {
+            try
+            {
+                ReplyMarkup? markup = template.ReplyMarkup
+                ?? (ReplyMarkup?)template.InlineMarkup
+                ?? (template.RemoveReplyKeyboard ? new ReplyKeyboardRemove() : null);
+
+                if (template.IsPhotoMessage)
+                {
+                    return await _bot.SendPhoto(
+                        chatId: chatId,
+                        photo: template.Photo!,
+                        caption: template.Text,
+                        messageThreadId: topicId,
+                        parseMode: template.ParseMode,
+                        replyMarkup: markup,
+                        disableNotification: template.DisableNotification,
+                        cancellationToken: cancellationToken
+                    );
+                }
+                else
+                {
+                    return await _bot.SendMessage(
+                        chatId: chatId,
+                        text: template.Text,
+                        messageThreadId: topicId,
+                        parseMode: template.ParseMode,
+                        replyMarkup: markup,
+                        disableNotification: template.DisableNotification,
+                        cancellationToken: cancellationToken
+                    );
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
 

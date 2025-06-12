@@ -9,5 +9,6 @@ namespace TelegramBotNavigation.Repositories.Interfaces
         Task<TranslationImage?> GetAsync(string key, LanguageCode languageCode);
         Task AddAsync(TranslationImage translationImage);
         Task UpdateAsync(TranslationImage translationImage);
+        Task DeleteAsync(string key, LanguageCode languageCode);
     }
 }

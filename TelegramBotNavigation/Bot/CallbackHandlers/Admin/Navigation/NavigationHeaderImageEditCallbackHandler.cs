@@ -1,0 +1,104 @@
+﻿using Telegram.Bot.Types;
+using TelegramBotNavigation.Bot.Shared;
+using TelegramBotNavigation.Bot.Templates;
+using TelegramBotNavigation.Repositories.Interfaces;
+using TelegramBotNavigation.Services.Interfaces;
+using TelegramBotNavigation.Services.Sessions;
+using TelegramBotNavigation.Utils;
+
+namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
+{
+    public class NavigationHeaderImageEditCallbackHandler : ICallbackHandler
+    {
+        public string Key => CallbackKeys.NavigationHeaderImageEdit;
+
+        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
+        private readonly ITelegramMessageService _messageService;
+        private readonly ILocalizationManager _localizer;
+        private readonly ILogger<NavigationHeaderImageEditCallbackHandler> _logger;
+        private readonly ISessionManager _sessionManager;
+        private readonly IMenuRepository _menuRepository;
+        private readonly ICallbackAlertService _callbackAlertService;
+
+        public NavigationHeaderImageEditCallbackHandler(
+            IUserRepository userRepository,
+            IUserService userService,
+            ITelegramMessageService messageService,
+            ILocalizationManager localizer,
+            ILogger<NavigationHeaderImageEditCallbackHandler> logger,
+            ISessionManager sessionManager,
+            IMenuRepository menuRepository,
+            ICallbackAlertService callbackAlertService)
+        {
+            _userRepository = userRepository;
+            _userService = userService;
+            _messageService = messageService;
+            _localizer = localizer;
+            _logger = logger;
+            _sessionManager = sessionManager;
+            _menuRepository = menuRepository;
+            _callbackAlertService = callbackAlertService;
+        }
+
+        public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
+        {
+            var chatId = query.Message!.Chat.Id;
+            var messageId = query.Message.MessageId;
+            var userId = query.From.Id;
+
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user == null) return;
+
+            if (!_userService.IsAdmin(user))
+            {
+                _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
+                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
+                return;
+            }
+
+            if (args.Length < 2) return;
+
+            var menuIdStr = args[0];
+            if (!int.TryParse(menuIdStr, out var menuId))
+            {
+                _logger.LogWarning("Invalid menuId format: {MenuIdStr}", menuIdStr);
+                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidMenuId, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
+                return;
+            }
+
+            var menu = await _menuRepository.GetByIdAsync(menuId);
+            if (menu == null)
+            {
+                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.MenuNotFound, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
+                return;
+            }
+
+            string selectedLang = args[1];
+
+            await _sessionManager.ClearSessionAsync(userId);
+
+            await _sessionManager.SetSessionAsync(userId, new SessionData
+            {
+                Action = SessionKeys.NavigationHeaderEditImage,
+                Data = new Dictionary<string, string>
+                {
+                    { "menuId", menuId.ToString() },
+                    { "lang", selectedLang }
+                }
+            }, TimeSpan.FromMinutes(10));
+
+            var languageCode = LanguageCodeHelper.FromTelegramTag(selectedLang);
+            var langLabel = languageCode.GetDisplayLabel();
+
+            var prompt = await _localizer.GetInterfaceTranslation(LocalizationKeys.Messages.NavigationHeaderImageEditPrompt, user.LanguageCode);
+            var promptWithLang = $"{langLabel}\n\n{prompt}";
+
+            var promtTemplate = TelegramTemplate.Create(promptWithLang);
+            await _messageService.SendTemplateAsync(chatId, promtTemplate, ct);
+        }
+    }
+}

@@ -39,14 +39,14 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
                 : $"✅ {await localizer.GetInterfaceTranslation(Labels.Unblocked, userLang)}";
 
             sb.AppendLine($"<b>{statusLabel}:</b> {blockedText}");
-            sb.AppendLine($"<b>ChatId:</b> <code>{userDto.ChatId}</code>");
+            sb.AppendLine($"<b>UserId:</b> <code>{userDto.TelegramUserId}</code>");
 
             var text = $"{sb.ToString().Trim()}";
 
             var interactionText = new StringBuilder();
 
             if (userInteractions.Count > 0)
-                interactionText.AppendLine($"{await localizer.GetInterfaceTranslation(Headers.InteractionHistory, userLang)}\n");
+                interactionText.AppendLine($"<b>{await localizer.GetInterfaceTranslation(Headers.InteractionHistory, userLang)}</b>\n");
 
             var sortedInteractions = sort == "asc"
                 ? userInteractions.OrderBy(i => i.TimeStamp)

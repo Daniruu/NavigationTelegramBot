@@ -19,6 +19,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
         private readonly ITelegramMessageService _messageService;
         private readonly ILocalizationManager _localizer;
         private readonly ISessionManager _sessionManager;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public NavigationAddCallbackHandler(
             IUserRepository userRepository,
@@ -26,7 +27,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             ILogger<NavigationManageCallbackHandler> logger,
             ITelegramMessageService messageService,
             ILocalizationManager localizer,
-            ISessionManager sessionManager)
+            ISessionManager sessionManager,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -34,12 +36,12 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             _messageService = messageService;
             _localizer = localizer;
             _sessionManager = sessionManager;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
         {
             var chatId = query.Message!.Chat.Id;
-            var messageId = query.Message.MessageId;
             var userId = query.From.Id;
 
             var user = await _userRepository.GetByIdAsync(userId);
@@ -49,8 +51,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -65,7 +66,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             var prompt = await _localizer.GetInterfaceTranslation(Messages.NavigationAddPrompt, user.LanguageCode);
             var promptTemplate = TelegramTemplate.Create(prompt);
 
-            await _messageService.EditTemplateAsync(chatId, messageId, promptTemplate, ct);
+            await _messageService.SendTemplateAsync(chatId, promptTemplate, ct);
         }
     }
 }

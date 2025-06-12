@@ -1,5 +1,6 @@
 ﻿using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using TelegramBotNavigation.Services.Interfaces;
 using TelegramBotNavigation.Services.Sessions;
 
 namespace TelegramBotNavigation.Bot
@@ -10,15 +11,26 @@ namespace TelegramBotNavigation.Bot
         private readonly CommandDispatcher _commandDispatcher;
         private readonly CallbackDispatcher _callbackDispatcher;
         private readonly SessionDispatcher _sessionDispatcher;
+        private readonly MessageDispatcher _messageDispatcher;
         private readonly ISessionManager _sessionManager;
+        private readonly ISupportRequestService _supportService;
 
-        public UpdateProcessor(ILogger<UpdateProcessor> logger, CommandDispatcher commandDispatcher, CallbackDispatcher callbackDispatcher, SessionDispatcher sessionDispatcher, ISessionManager sessionManager)
+        public UpdateProcessor(
+            ILogger<UpdateProcessor> logger, 
+            CommandDispatcher commandDispatcher, 
+            CallbackDispatcher callbackDispatcher, 
+            SessionDispatcher sessionDispatcher,
+            MessageDispatcher messageDispatcher,
+            ISessionManager sessionManager,
+            ISupportRequestService supportService)
         {
             _logger = logger;
             _commandDispatcher = commandDispatcher;
             _callbackDispatcher = callbackDispatcher;
             _sessionDispatcher = sessionDispatcher;
+            _messageDispatcher = messageDispatcher;
             _sessionManager = sessionManager;
+            _supportService = supportService;
         }
 
         public async Task HandleAsync(Update update, CancellationToken ct)
@@ -40,13 +52,13 @@ namespace TelegramBotNavigation.Bot
                         else
                         {
                             var session = await _sessionManager.GetSessionAsync(userId);
-                            if (session != null)
+                            if (session != null && update.Message.Chat.Type == ChatType.Private)
                             {
                                 await _sessionDispatcher.DispatchAsync(update.Message, session, ct);
                             }
                             else
                             {
-                                _logger.LogWarning("No session found for user {UserId}. Message type: {MessageType}", userId, update.Message.Type);
+                                await _messageDispatcher.DispatchAsync(update.Message, ct);
                             }
                         }
                     }

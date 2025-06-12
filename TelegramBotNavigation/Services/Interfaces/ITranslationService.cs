@@ -6,5 +6,6 @@ namespace TelegramBotNavigation.Services.Interfaces
     {
         Task<string?> GetTranslationAsync(string key, LanguageCode languageCode);
         Task SetTranslationAsync(string key, LanguageCode languageCode, string value);
+        Task DeleteTranslationAsync(string key, LanguageCode languageCode);
     }
 }

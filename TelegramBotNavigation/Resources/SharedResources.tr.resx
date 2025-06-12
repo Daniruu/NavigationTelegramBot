@@ -1,447 +1,564 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
+	<!-- 
+		Microsoft ResX Schema
 
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="labels.admin.panel" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.welcome.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="commands.admin" xml:space="preserve">
-    <value />
-  </data>
-  <data name="commands.language" xml:space="preserve">
-    <value />
-  </data>
-  <data name="commands.start" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.not_admin" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.language.changed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.language.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.save" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.cancel" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.admin.panel" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.welcome.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.language.selection" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.save.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.user_not_found" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_command" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.language_not_supported" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.no_languages_available" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.back" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome.edit.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome.edit.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_input" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.session_data_missing" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome.image.removed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete_image" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.navigation.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.add.navigation.menu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.add.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.add.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.view" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete.navigation.menu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.no_items" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.delete.confirmation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.navigation.delete.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.confirm" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.add.navigation.item" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.item_type_selection" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.sub_menu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.show_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.support_request" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_value" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.not_implemented_yet" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.menu_item.add.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_action_type" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_session_data" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete.navigation.item" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.item_delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.menu_item.delete.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_menu_item_id" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_reorder" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.reorder.navigation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_url_item_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item.label" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item.url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item.message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lablers.navigation.set_default" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.navigation.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.mode.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.mode.delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.menu_item.edit.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messaegs.nav_header.edit.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.nav_header.edit.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.nav.header_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_message_item_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.navigation.set_default.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="commands.navigation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.item.delete.confirmation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.menu.title" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_submenu_item_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.language.changed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.bot.settings" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.users.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.support.requests" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.cancel.delete.navigation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.manage.empty" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.menu_item.add.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.language" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.last_activity" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.status" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.blocked" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.unblocked" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.user_details" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.execute_command" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.change_language" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.click_button" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.sent_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.requested_support" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.interaction_unknown" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.interaction_history" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.item_not_found" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.view_profile" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.sort.asc" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.sort.desc" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.click_submenu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.click_show_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.users.manage" xml:space="preserve">
-    <value />
-  </data>
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="errors.not_admin" xml:space="preserve">
+    <value>⚠️ Yönetici yetkisi gerekli</value>
+</data>
+<data name="errors.user_not_found" xml:space="preserve">
+    <value>⚠️ Kullanıcı bulunamadı</value>
+</data>
+<data name="errors.invalid_command" xml:space="preserve">
+    <value>⚠️ Geçersiz komut</value>
+</data>
+<data name="errors.invalid_input" xml:space="preserve">
+    <value>⚠️ Geçersiz giriş</value>
+</data>
+<data name="errors.language_not_supported" xml:space="preserve">
+    <value>⚠️ Dil desteklenmiyor</value>
+</data>
+<data name="errors.no_languages_available" xml:space="preserve">
+    <value>⚠️ Kullanılabilir dil yok</value>
+</data>
+<data name="errors.session_data_missing" xml:space="preserve">
+    <value>⚠️ Oturum verisi eksik</value>
+</data>
+<data name="errors.invalid_menu_id" xml:space="preserve">
+    <value>⚠️ Geçersiz menü ID'si</value>
+</data>
+<data name="errors.menu_not_found" xml:space="preserve">
+    <value>⚠️ Menü bulunamadı</value>
+</data>
+<data name="errors.invalid_action_type" xml:space="preserve">
+    <value>⚠️ Geçersiz işlem türü</value>
+</data>
+<data name="errors.invalid_session_data" xml:space="preserve">
+    <value>⚠️ Geçersiz oturum verisi</value>
+</data>
+<data name="errors.invalid_menu_item_id" xml:space="preserve">
+    <value>⚠️ Geçersiz düğme ID'si</value>
+</data>
+<data name="errors.invalid_url" xml:space="preserve">
+    <value>⚠️ Geçersiz URL</value>
+</data>
+<data name="errors.invalid_text" xml:space="preserve">
+    <value>⚠️ Geçersiz metin</value>
+</data>
+<data name="errors.item_not_found" xml:space="preserve">
+    <value>⚠️ Öğe bulunamadı</value>
+</data>
+<data name="errors.request_not_found" xml:space="preserve">
+    <value>⚠️ Talep bulunamadı</value>
+</data>
+<data name="errors.request_already_resolved" xml:space="preserve">
+    <value>⚠️ Talep zaten çözüldü. Yeni sorular için lütfen yeni bir talep gönderin.</value>
+</data>
+<data name="errors.already_admin" xml:space="preserve">
+    <value>⚠️ Kullanıcı zaten yönetici</value>
+</data>
+<data name="errors.already_not_admin" xml:space="preserve">
+    <value>⚠️ Kullanıcı yönetici değil</value>
+</data>
+<data name="labels.add.navigation.item" xml:space="preserve">
+    <value>Gezinme öğesi ekle</value>
+</data>
+<data name="labels.add.navigation.menu" xml:space="preserve">
+    <value>Gezinme menüsü ekle</value>
+</data>
+<data name="labels.admin_panel" xml:space="preserve">
+    <value>Yönetici Paneli</value>
+</data>
+<data name="labels.back" xml:space="preserve">
+    <value>« Geri</value>
+</data>
+<data name="labels.cancel" xml:space="preserve">
+    <value>İptal</value>
+</data>
+<data name="labels.confirm" xml:space="preserve">
+    <value>Onayla</value>
+</data>
+<data name="labels.delete" xml:space="preserve">
+    <value>Sil</value>
+</data>
+<data name="labels.delete.navigation.menu" xml:space="preserve">
+    <value>Gezinmeyi sil</value>
+</data>
+<data name="labels.delete_image" xml:space="preserve">
+    <value>Görseli sil</value>
+</data>
+<data name="labels.edit" xml:space="preserve">
+    <value>Düzenle</value>
+</data>
+<data name="labels.menu_item_type.show_message" xml:space="preserve">
+    <value>💬 Mesaj</value>
+</data>
+<data name="labels.menu_item_type.sub_menu" xml:space="preserve">
+    <value>📂 Alt menü</value>
+</data>
+<data name="labels.menu_item_type.support_request" xml:space="preserve">
+    <value>🆘 Destek</value>
+</data>
+<data name="labels.menu_item_type.url" xml:space="preserve">
+    <value>🔗 Bağlantı</value>
+</data>
+<data name="labels.navigation.manage" xml:space="preserve">
+    <value>Gezinmeyi yönet</value>
+</data>
+<data name="labels.save" xml:space="preserve">
+    <value>Kaydet</value>
+</data>
+<data name="labels.users.manage" xml:space="preserve">
+    <value>Kullanıcıları yönet</value>
+</data>
+<data name="labels.welcome.manage" xml:space="preserve">
+    <value>Karşılama mesajını yönet</value>
+</data>
+<data name="labels.reorder.navigation" xml:space="preserve">
+    <value>Gezinme sırasını değiştir</value>
+</data>
+<data name="labels.edit.navigation.item" xml:space="preserve">
+    <value>Gezinme öğesini düzenle</value>
+</data>
+<data name="labels.edit.navigation.item.label" xml:space="preserve">
+    <value>Düğme adını değiştir</value>
+</data>
+<data name="labels.edit.navigation.item.url" xml:space="preserve">
+    <value>URL'yi değiştir</value>
+</data>
+<data name="labels.edit.navigation.item.message" xml:space="preserve">
+    <value>Mesajı değiştir</value>
+</data>
+<data name="lablers.navigation.set_default" xml:space="preserve">
+    <value>Varsayılan olarak ayarla</value>
+</data>
+<data name="labels.navigation.edit" xml:space="preserve">
+    <value>Gezinmeyi düzenle</value>
+</data>
+<data name="labels.mode.edit" xml:space="preserve">
+    <value>Düzenleme modu</value>
+</data>
+<data name="labels.mode.delete" xml:space="preserve">
+    <value>Silme modu</value>
+</data>
+<data name="labels.nav.header_edit" xml:space="preserve">
+    <value>Başlığı düzenle</value>
+</data>
+<data name="labels.cancel.delete.navigation" xml:space="preserve">
+    <value>Hayır, fikrimi değiştirdim</value>
+</data>
+<data name="labels.language" xml:space="preserve">
+    <value>Dil</value>
+</data>
+<data name="labels.last_activity" xml:space="preserve">
+    <value>Son etkinlik</value>
+</data>
+<data name="labels.status" xml:space="preserve">
+    <value>Durum</value>
+</data>
+<data name="labels.blocked" xml:space="preserve">
+    <value>Engellendi</value>
+</data>
+<data name="labels.unblocked" xml:space="preserve">
+    <value>Engeli kaldırıldı</value>
+</data>
+<data name="labels.view_profile" xml:space="preserve">
+    <value>Profili görüntüle</value>
+</data>
+<data name="labels.sort.asc" xml:space="preserve">
+    <value>⬇️ İlk önce eski</value>
+</data>
+<data name="labels.sort.desc" xml:space="preserve">
+    <value>⬆️ İlk önce yeni</value>
+</data>
+<data name="labels.reply" xml:space="preserve">
+    <value>Cevapla</value>
+</data>
+<data name="labels.close_request" xml:space="preserve">
+    <value>Talebi kapat</value>
+</data>
+<data name="labels.navigation.delete_header_image" xml:space="preserve">
+    <value>Başlık görselini sil</value>
+</data>
+<data name="labels.navigation.header_edit_image" xml:space="preserve">
+    <value>Görseli değiştir</value>
+</data>
+<data name="labels.navigation.delete_header" xml:space="preserve">
+    <value>Başlığı sil</value>
+</data>
+<data name="labels.language_settings" xml:space="preserve">
+    <value>Dil ayarları</value>
+</data>
+<data name="labels.set_admin" xml:space="preserve">
+    <value>Yönetici olarak ata</value>
+</data>
+<data name="labels.unset_admin" xml:space="preserve">
+    <value>Yönetici yetkisini kaldır</value>
+</data>
+<data name="messages.welcome" xml:space="preserve">
+    <value>Hoş geldiniz!</value>
+</data>
+<data name="messages.welcome.edit.prompt" xml:space="preserve">
+    <value>Yeni karşılama mesajı girin</value>
+</data>
+<data name="messages.language.prompt" xml:space="preserve">
+    <value>Aşağıdaki listeden bir dil seçin</value>
+</data>
+<data name="messages.save.success" xml:space="preserve">
+    <value>✅ Başarıyla kaydedildi</value>
+</data>
+<data name="messages.navigation.add.prompt" xml:space="preserve">
+    <value>Yeni menü için bir ad girin</value>
+</data>
+<data name="messages.navigation.add.success" xml:space="preserve">
+    <value>✅ Menü başarıyla eklendi</value>
+</data>
+<data name="messages.navigation.no_items" xml:space="preserve">
+    <value>Menü henüz bir düğme içermiyor</value>
+</data>
+<data name="messages.navigation.delete.confirmation" xml:space="preserve">
+    <value>Bu menüyü silmek istediğinize emin misiniz?</value>
+</data>
+<data name="messages.enter.button_text" xml:space="preserve">
+    <value>Düğme metni girin</value>
+</data>
+<data name="messages.enter.button_value" xml:space="preserve">
+    <value>Düğme değeri girin</value>
+</data>
+<data name="messages.enter.button_url" xml:space="preserve">
+    <value>URL girin</value>
+</data>
+<data name="messages.enter.button_message" xml:space="preserve">
+    <value>Gösterilecek mesajı girin</value>
+</data>
+<data name="messages.not_implemented_yet" xml:space="preserve">
+    <value>Henüz uygulanmadı</value>
+</data>
+<data name="messaegs.nav_header.edit.prompt" xml:space="preserve">
+    <value>Yeni menü başlığı girin</value>
+</data>
+<data name="messages.navigation.item.delete.confirmation" xml:space="preserve">
+    <value>Bu düğmeyi sil?</value>
+</data>
+<data name="messages.enter.menu.title" xml:space="preserve">
+    <value>Menü başlığı girin</value>
+</data>
+<data name="messages.user.execute_command" xml:space="preserve">
+    <value>Komut çalıştırıldı: {0}</value>
+</data>
+<data name="messages.user.click_button" xml:space="preserve">
+    <value>Düğmeye tıklandı: {0}</value>
+</data>
+<data name="messages.user.click_submenu" xml:space="preserve">
+    <value>Alt menü açıldı: {0}</value>
+</data>
+<data name="messages.user.click_show_message" xml:space="preserve">
+    <value>Mesaj gösterildi: {0}</value>
+</data>
+<data name="messages.user.change_language" xml:space="preserve">
+    <value>Dil değiştirildi: {0}</value>
+</data>
+<data name="messages.user.sent_message" xml:space="preserve">
+    <value>Kullanıcı mesaj gönderdi</value>
+</data>
+<data name="messages.user.requested_support" xml:space="preserve">
+    <value>Destek istendi</value>
+</data>
+<data name="messages.user.interaction_unknown" xml:space="preserve">
+    <value>Bilinmeyen işlem</value>
+</data>
+<data name="messages.enter.support_request_message" xml:space="preserve">
+    <value>Merhaba! Destek ekibine ulaştığınız için teşekkürler. Lütfen sorununuzu açıklayın — operatör müsait olduğunda size cevap verilecektir.</value>
+</data>
+<data name="messages.enter.support_request_reply" xml:space="preserve">
+    <value>Kullanıcıya yanıt girin</value>
+</data>
+<data name="messages.support.reply_message" xml:space="preserve">
+    <value>Destekten gelen yanıt:</value>
+</data>
+<data name="messages.delete_header_image.prompt" xml:space="preserve">
+    <value>Görseli silmek istediğinize emin misiniz?</value>
+</data>
+<data name="messages.nav_header_image.edit.prompt" xml:space="preserve">
+    <value>Yeni başlık görseli gönderin</value>
+</data>
+<data name="messages.delete_header.prompt" xml:space="preserve">
+    <value>Başlığı silmek istediğinize emin misiniz?</value>
+</data>
+<data name="messages.set_admin" xml:space="preserve">
+    <value>Kullanıcı yönetici olarak atandı</value>
+</data>
+<data name="messages.unset_admin" xml:space="preserve">
+    <value>Kullanıcı artık yönetici değil</value>
+</data>
+<data name="commands.admin" xml:space="preserve">
+    <value>Yönetici Paneli</value>
+</data>
+<data name="commands.language" xml:space="preserve">
+    <value>Dili Değiştir</value>
+</data>
+<data name="commands.navigation" xml:space="preserve">
+    <value>Gezinme Menüsü</value>
+</data>
+<data name="commands.set_admin" xml:space="preserve">
+    <value>Yönetici olarak ata</value>
+</data>
+<data name="commands.set_group" xml:space="preserve">
+    <value>Destek grubunu ayarla</value>
+</data>
+<data name="commands.start" xml:space="preserve">
+    <value>Bot ile başlamaya başla</value>
+</data>
+<data name="notifications.language.changed" xml:space="preserve">
+    <value>✅ Dil başarıyla değiştirildi</value>
+</data>
+<data name="notifications.menu_item.add.success" xml:space="preserve">
+    <value>✅ Düğme başarıyla eklendi</value>
+</data>
+<data name="notifications.menu_item.delete.success" xml:space="preserve">
+    <value>✅ Düğme silindi</value>
+</data>
+<data name="notifications.menu_item.edit.success" xml:space="preserve">
+    <value>✅ Düğme güncellendi</value>
+</data>
+<data name="notifications.nav_header.edit.success" xml:space="preserve">
+    <value>✅ Başlık güncellendi</value>
+</data>
+<data name="notifications.navigation.set_default.success" xml:space="preserve">
+    <value>✅ Menü varsayılan olarak ayarlandı</value>
+</data>
+<data name="notifications.welcome.edit.success" xml:space="preserve">
+    <value>✅ Karşılama mesajı güncellendi</value>
+</data>
+<data name="notifications.welcome.image.removed" xml:space="preserve">
+    <value>✅ Görsel silindi</value>
+</data>
+<data name="notifications.navigation.delete.success" xml:space="preserve">
+    <value>✅ Menü silindi</value>
+</data>
+<data name="notifications.support_request.created" xml:space="preserve">
+    <value>✅ Destek talebi gönderildi</value>
+</data>
+<data name="notifications.support_request.reply_received" xml:space="preserve">
+    <value>❗️
+
+Yeni bir destek talebi alındı
+
+&lt;b&gt;Kullanıcı:&lt;/b&gt; {0} {1}
+&lt;b&gt;Kullanıcı ID:&lt;/b&gt; {2}
+&lt;b&gt;Mesaj içeriği:&lt;/b&gt; {3}</value>
+</data>
+<data name="notifications.support_request.reply_sent" xml:space="preserve">
+    <value>✅ Kullanıcıya yanıt gönderildi</value>
+</data>
+<data name="notifications.support_request.resolved" xml:space="preserve">
+    <value>✅ Destek talebi kapatıldı</value>
+</data>
+<data name="notifications.support_request.resolved_admin" xml:space="preserve">
+    <value>✅
+
+Destek talebi sona erdi
+
+&lt;b&gt;Kullanıcı:&lt;/b&gt; {0} {1}
+&lt;b&gt;Kullanıcı ID:&lt;/b&gt; {2}</value>
+</data>
+<data name="notifications.request_user_session_closed" xml:space="preserve">
+    <value>📌 Talep tamamlandı. Yeni sorularınız için lütfen yeni bir talep gönderin.</value>
+</data>
+<data name="notifications.user_session_closed_prompt" xml:space="preserve">
+    <value>⚠️ Oturum sonlandırıldı. Yeniden başlayabilirsiniz.</value>
+</data>
+<data name="notifications.header_image.deleted" xml:space="preserve">
+    <value>✅ Başlık görseli silindi</value>
+</data>
+<data name="notification.admin.set" xml:space="preserve">
+    <value>✅ Kullanıcı yönetici olarak atandı</value>
+</data>
+<data name="notification.admin.unset" xml:space="preserve">
+    <value>✅ Kullanıcının yönetici yetkileri kaldırıldı</value>
+</data>
+<data name="labels.delete.navigation.menu.confirm" xml:space="preserve">
+    <value>Evet, menüyü sil</value>
+</data>
+<data name="headers.navigation_support_edit" xml:space="preserve">
+    <value>{0} düzenle
+
+&lt;b&gt;Ad:&lt;/b&gt; {1}</value>
+</data>
+<data name="notifications.language.changed" xml:space="preserve">
+    <value>✅ Dil başarıyla değiştirildi</value>
+</data>
+<data name="headers.admin.panel" xml:space="preserve">
+  <value>Yönetici Paneli</value>
+</data>
+<data name="headers.welcome.manage" xml:space="preserve">
+  <value>Karşılama Mesajı</value>
+</data>
+<data name="headers.language.selection" xml:space="preserve">
+  <value>Dil Seçimi</value>
+</data>
+<data name="headers.navigation.manage" xml:space="preserve">
+  <value>Gezinmeyi Yönet</value>
+</data>
+<data name="headers.navigation.manage.empty" xml:space="preserve">
+  <value>Gezinme Menüsü Boş</value>
+</data>
+<data name="headers.navigation" xml:space="preserve">
+  <value>Gezinme</value>
+</data>
+<data name="headers.navigation.view" xml:space="preserve">
+  <value>Gezinmeyi Görüntüle</value>
+</data>
+<data name="headers.navigation.edit" xml:space="preserve">
+  <value>Düzenle &lt;b&gt;{0}&lt;/b&gt;
+
+&lt;b&gt;Başlık:&lt;/b&gt; {1}
+&lt;b&gt;Görsel:&lt;/b&gt; {2}</value>
+</data>
+<data name="headers.item_type_selection" xml:space="preserve">
+  <value>Öğe Türünü Seçin</value>
+</data>
+<data name="headers.item_delete" xml:space="preserve">
+  <value>Silmek için bir öğe seçin</value>
+</data>
+<data name="headers.navigation_reorder" xml:space="preserve">
+  <value>Gezinme Sırasını Değiştir</value>
+</data>
+<data name="headers.navigation_url_item_edit" xml:space="preserve">
+  <value>Düzenle {0}
+
+&lt;b&gt;Ad:&lt;/b&gt; {1}
+&lt;b&gt;Bağlantı:&lt;/b&gt; {2}</value>
+</data>
+<data name="headers.navigation_message_item_edit" xml:space="preserve">
+  <value>Düzenle {0}
+
+&lt;b&gt;Ad:&lt;/b&gt; {1}
+&lt;b&gt;Mesaj:&lt;/b&gt;
+{2}</value>
+</data>
+<data name="headers.navigation_submenu_item_edit" xml:space="preserve">
+  <value>Düzenle {0}
+
+&lt;b&gt;Ad:&lt;/b&gt; {1}</value>
+</data>
+<data name="headers.users.manage" xml:space="preserve">
+  <value>Kullanıcıları Yönet</value>
+</data>
+<data name="headers.user_details" xml:space="preserve">
+  <value>Kullanıcı Bilgileri</value>
+</data>
+<data name="headers.interaction_history" xml:space="preserve">
+  <value>Etkileşim Geçmişi</value>
+</data>
+<data name="headers.settings" xml:space="preserve">
+  <value>Ayarlar</value>
+</data>
+<data name="headers.support_request.manage" xml:space="preserve">
+  <value>Destek Taleplerini Yönet</value>
+</data>
+<data name="headers.language_settings" xml:space="preserve">
+  <value>Dil Ayarları</value>
+</data>
+<data name="headers.navigation_support_edit" xml:space="preserve">
+  <value>Düzenle {0}
+
+&lt;b&gt;Ad:&lt;/b&gt; {1}</value>
+</data>
+
 </root>

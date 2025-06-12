@@ -24,15 +24,11 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
                 },
                 new[]
                 {
-                    InlineKeyboardButton.WithCallbackData(await localizer.GetInterfaceTranslation(LocalizationKeys.Labels.BotSettings, lang), CallbackKeys.WelcomeManage)
+                    InlineKeyboardButton.WithCallbackData(await localizer.GetInterfaceTranslation(LocalizationKeys.Labels.LanguageSettings, lang), CallbackKeys.LanguageSettings)
                 },
                 new[]
                 {
                     InlineKeyboardButton.WithCallbackData(await localizer.GetInterfaceTranslation(LocalizationKeys.Labels.UsersManage, lang), CallbackKeys.UsersManage)
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData(await localizer.GetInterfaceTranslation(LocalizationKeys.Labels.SupportRequests, lang), CallbackKeys.WelcomeManage)
                 }
             });
 

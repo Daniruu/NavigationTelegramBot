@@ -40,5 +40,10 @@ namespace TelegramBotNavigation.Services
                 await _translationImageRepository.AddAsync(newTranslationImage);
             }
         }
+
+        public async Task DeleteTranslationImageAsync(string key, LanguageCode languageCode)
+        {
+            await _translationImageRepository.DeleteAsync(key, languageCode);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
                 new[]
                 {
                     InlineKeyboardButton.WithCallbackData(
-                        await localization.GetInterfaceTranslation(Labels.DeleteNavigationMenu, lang),
+                        await localization.GetInterfaceTranslation(Labels.DeleteNavigationMenuConfirm, lang),
                         $"{NavigationDelete}:{menu.Id}")
                 },
                 new[]

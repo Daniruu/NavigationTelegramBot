@@ -1,5 +1,6 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 using TelegramBotNavigation.Bot.Shared;
 using TelegramBotNavigation.Bot.Templates.Start;
 using TelegramBotNavigation.Models;
@@ -37,8 +38,10 @@ namespace TelegramBotNavigation.Bot.CommandHandlers.Common
             _userInteractionService = userInteractionService;
         }
 
-        public async Task HandleAsync(Message message, CancellationToken ct)
+        public async Task HandleAsync(Message message, string[] args, CancellationToken ct)
         {
+            if (message.Chat.Type != ChatType.Private) return;
+
             var userId = message.From!.Id;
             var languageCode = message.From.LanguageCode;
             var chatId = message.Chat.Id;
@@ -72,7 +75,7 @@ namespace TelegramBotNavigation.Bot.CommandHandlers.Common
 
             await _commandSetupService.SetupCommandsAsync(chatId, user, ct);
 
-            await _userInteractionService.LogAsync(message.From, chatId, Enums.ActionType.Command, Command);
+            await _userInteractionService.LogAsync(user, chatId, Enums.ActionType.Command, Command);
 
             var welcomeTemplate = await StartTemplate.CreateAsync(user.LanguageCode, _welcomeMessageProvider);
             await _messageService.SendTemplateAsync(chatId, welcomeTemplate, ct);

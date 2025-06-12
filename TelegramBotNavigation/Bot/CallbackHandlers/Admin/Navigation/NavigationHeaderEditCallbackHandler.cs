@@ -21,7 +21,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
         private readonly ILogger<NavigationHeaderEditCallbackHandler> _logger;
         private readonly ISessionManager _sessionManager;
         private readonly IMenuRepository _menuRepository;
-        private readonly ILanguageSettingRepository _languageSettingRepository;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public NavigationHeaderEditCallbackHandler(
             IUserRepository userRepository, 
@@ -30,8 +30,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             ILocalizationManager localizer, 
             ILogger<NavigationHeaderEditCallbackHandler> logger, 
             ISessionManager sessionManager, 
-            IMenuRepository menuRepository, 
-            ILanguageSettingRepository languageSettingRepository)
+            IMenuRepository menuRepository,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -40,7 +40,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             _logger = logger;
             _sessionManager = sessionManager;
             _menuRepository = menuRepository;
-            _languageSettingRepository = languageSettingRepository;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -56,44 +56,33 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
-            if (args.Length == 0) return;
+            if (args.Length < 2) return;
 
             var menuIdStr = args[0];
             if (!int.TryParse(menuIdStr, out var menuId))
             {
                 _logger.LogWarning("Invalid menuId format: {MenuIdStr}", menuIdStr);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidMenuId, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(errorMessage), ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
             var menu = await _menuRepository.GetByIdAsync(menuId);
             if (menu == null)
             {
-                var error = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.MenuNotFound, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(error), ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.MenuNotFound, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
-            string selectedLang;
-
-            if (args.Length < 2)
-            {
-                var fallbackOrder = await _languageSettingRepository.GetFallbackOrderAsync();
-                selectedLang = fallbackOrder.First().ToLanguageTag();
-            }
-            else
-            {
-                selectedLang = args[1];
-            }
+            string selectedLang = args[1];
 
             await _sessionManager.ClearSessionAsync(userId);
-
+            
             await _sessionManager.SetSessionAsync(userId, new SessionData
             {
                 Action = SessionKeys.NavigationHeaderEdit,

@@ -1,4 +1,5 @@
 ﻿using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 using TelegramBotNavigation.Bot.Shared;
 using TelegramBotNavigation.Bot.Templates;
 using TelegramBotNavigation.Bot.Templates.Admin;
@@ -30,8 +31,10 @@ namespace TelegramBotNavigation.Bot.CommandHandlers.Admin
             _localizer = localizer;
             _logger = logger;
         }
-        public async Task HandleAsync(Message message, CancellationToken ct)
+        public async Task HandleAsync(Message message, string[] args, CancellationToken ct)
         {
+            if (message.Chat.Type != ChatType.Private) return;
+
             var chatId = message.Chat.Id;
             var userId = message.From!.Id;
 

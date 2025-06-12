@@ -17,7 +17,7 @@ namespace TelegramBotNavigation.Services
             _interactionRepository = interactionRepository;
         }
 
-        public async Task LogAsync(User user, long chatId, ActionType actionType, string value)
+        public async Task LogAsync(TelegramUser user, long chatId, ActionType actionType, string value)
         {
             var interaction = new UserInteraction
             {
@@ -25,7 +25,7 @@ namespace TelegramBotNavigation.Services
                 ActionType = actionType,
                 Value = value,
                 TimeStamp = DateTime.UtcNow,
-                LanguageCode = LanguageCodeHelper.FromTelegramTag(user.LanguageCode),
+                LanguageCode = user.LanguageCode,
                 ChatId = chatId
             };
 

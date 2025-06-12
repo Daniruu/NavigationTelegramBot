@@ -60,7 +60,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Common
             if (itemId.HasValue)
             {
                 var item = await _menuItemRepository.GetByIdAsync(itemId.Value);
-                if (item != null) await _userInteractionService.LogAsync(query.From, chatId, Enums.ActionType.SubmenuClick, item.LabelTranslationKey);
+                if (item != null) await _userInteractionService.LogAsync(user, chatId, Enums.ActionType.SubmenuClick, item.LabelTranslationKey);
             }
 
             var template = await NavigationTemplate.CreateAsync(user.LanguageCode, _localizer, _buttonBuilder, menu);

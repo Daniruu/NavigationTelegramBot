@@ -21,7 +21,6 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
         private readonly IMenuRepository _menuRepository;
         private readonly ITranslationService _translationService;
         private readonly ILanguageSettingRepository _languageSettingRepository;
-        private readonly ITranslationImageService _translationImageService;
 
         public NavigationHeaderEditSessionHandler(
             IUserRepository userRepository, 
@@ -31,8 +30,7 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
             ISessionManager sessionManager, 
             IMenuRepository menuRepository, 
             ITranslationService translationService, 
-            ILanguageSettingRepository languageSettingRepository,
-            ITranslationImageService translationImageService)
+            ILanguageSettingRepository languageSettingRepository)
         {
             _userRepository = userRepository;
             _messageService = messageService;
@@ -42,7 +40,6 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
             _menuRepository = menuRepository;
             _translationService = translationService;
             _languageSettingRepository = languageSettingRepository;
-            _translationImageService = translationImageService;
         }
 
         public async Task HandleAsync(Message message, SessionData session, CancellationToken ct)
@@ -79,21 +76,9 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
 
             var languageCode = LanguageCodeHelper.FromTelegramTag(langTag);
 
-            string? text = message.Text ?? message.Caption;
+            string? header = message.Text;
 
-            string? imageFileId = null;
-
-            var photo = message.Photo?.OrderByDescending(p => p.FileSize).FirstOrDefault();
-            if (photo != null)
-            {
-                imageFileId = photo.FileId;
-            }
-            else if (message.Document != null && message.Document.MimeType!.StartsWith("image/"))
-            {
-                imageFileId = message.Document.FileId;
-            }
-
-            if (string.IsNullOrWhiteSpace(text) && string.IsNullOrWhiteSpace(imageFileId))
+            if (string.IsNullOrWhiteSpace(header))
             {
                 var error = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidInput, user.LanguageCode);
                 var errorTemplate = TelegramTemplate.Create(error);
@@ -101,15 +86,7 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
                 return;
             }
 
-            if (!string.IsNullOrEmpty(text))
-            {
-                await _translationService.SetTranslationAsync(menu.HeaderTranslationKey, languageCode, text);
-            }
-
-            if (!string.IsNullOrEmpty(imageFileId))
-            {
-                await _translationImageService.SetTranslationImageAsync(menu.HeaderImageTranslationKey, languageCode, imageFileId);
-            }
+            await _translationService.SetTranslationAsync(menu.HeaderTranslationKey, languageCode, header);
 
             await _sessionManager.ClearSessionAsync(userId);
 

@@ -54,7 +54,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Common
 
             await _commandSetupService.SetupCommandsAsync(chatId, user, ct);
 
-            await _userInteractionService.LogAsync(query.From, chatId, Enums.ActionType.LanguageChange, selectedLanguage.GetDisplayLabel());
+            await _userInteractionService.LogAsync(user, chatId, Enums.ActionType.LanguageChange, selectedLanguage.GetDisplayLabel());
 
             var alert = await _localizer.GetInterfaceTranslation(LocalizationKeys.Notifications.LanguageChanged, user.LanguageCode, selectedLanguage.GetDisplayLabel());
             await _callbackAlertService.ShowAsync(query.Id, alert, cancellationToken: ct);

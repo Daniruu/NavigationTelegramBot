@@ -6,7 +6,6 @@ using TelegramBotNavigation.Models;
 using TelegramBotNavigation.Repositories.Interfaces;
 using TelegramBotNavigation.Services.Interfaces;
 using static TelegramBotNavigation.Bot.Shared.LocalizationKeys;
-using static TelegramBotNavigation.Bot.Shared.CallbackKeys;
 
 namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
 {
@@ -56,8 +55,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -68,7 +66,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("Invalid menuId format: {MenuIdStr}", menuIdStr);
                 var errorMessage = await _localizer.GetInterfaceTranslation(Errors.InvalidMenuId, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(errorMessage), ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -118,6 +116,5 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
                 await DeleteTranslationsRecursiveAsync(child);
             }
         }
-
     }
 }

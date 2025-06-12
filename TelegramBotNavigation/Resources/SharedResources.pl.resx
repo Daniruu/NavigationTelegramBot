@@ -117,331 +117,458 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="labels.admin.panel" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.welcome.manage" xml:space="preserve">
-    <value />
-  </data>
   <data name="commands.admin" xml:space="preserve">
-    <value />
+    <value>Panel administratora</value>
   </data>
   <data name="commands.language" xml:space="preserve">
-    <value />
-  </data>
-  <data name="commands.start" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.not_admin" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.language.changed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.language.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.save" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.cancel" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.admin.panel" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.welcome.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.language.selection" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.save.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.user_not_found" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_command" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.language_not_supported" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.no_languages_available" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.back" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome.edit.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome.edit.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_input" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.session_data_missing" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.welcome.image.removed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete_image" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.navigation.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.manage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.add.navigation.menu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.add.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.add.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.view" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete.navigation.menu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.no_items" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.navigation.delete.confirmation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.navigation.delete.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.confirm" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.add.navigation.item" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.item_type_selection" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.sub_menu" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.show_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.menu_item_type.support_request" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_value" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.not_implemented_yet" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.menu_item.add.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_action_type" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_session_data" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.enter.button_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.delete.navigation.item" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.item_delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.menu_item.delete.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_menu_item_id" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.invalid_text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_reorder" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.reorder.navigation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_url_item_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item.label" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item.url" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.edit.navigation.item.message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lablers.navigation.set_default" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.navigation.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.mode.edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.mode.delete" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.menu_item.edit.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messaegs.nav_header.edit.prompt" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.nav_header.edit.success" xml:space="preserve">
-    <value />
-  </data>
-  <data name="labels.nav.header_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation_message_item_edit" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.navigation.set_default.success" xml:space="preserve">
-    <value />
+    <value>Zmień język</value>
   </data>
   <data name="commands.navigation" xml:space="preserve">
-    <value />
+    <value>Menu nawigacji</value>
   </data>
-  <data name="messages.navigation.item.delete.confirmation" xml:space="preserve">
-    <value />
+  <data name="commands.set_admin" xml:space="preserve">
+    <value>Ustaw jako administratora</value>
   </data>
-  <data name="messages.enter.menu.title" xml:space="preserve">
-    <value />
+  <data name="commands.set_group" xml:space="preserve">
+    <value>Ustaw grupę wsparcia</value>
   </data>
-  <data name="headers.navigation_submenu_item_edit" xml:space="preserve">
-    <value />
+  <data name="commands.start" xml:space="preserve">
+    <value>Rozpocznij pracę z botem</value>
   </data>
-  <data name="headers.navigation" xml:space="preserve">
-    <value />
+  <data name="labels.add.navigation.item" xml:space="preserve">
+    <value>Dodaj element nawigacji</value>
   </data>
-  <data name="notifications.language.changed" xml:space="preserve">
-    <value />
+  <data name="labels.add.navigation.menu" xml:space="preserve">
+    <value>Dodaj menu nawigacji</value>
   </data>
-  <data name="labels.bot.settings" xml:space="preserve">
-    <value />
+  <data name="labels.admin_panel" xml:space="preserve">
+    <value>Panel administratora</value>
+  </data>
+  <data name="labels.back" xml:space="preserve">
+    <value>« Wstecz</value>
+  </data>
+  <data name="labels.cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="labels.confirm" xml:space="preserve">
+    <value>Potwierdź</value>
+  </data>
+  <data name="labels.delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="labels.delete.navigation.menu" xml:space="preserve">
+    <value>Usuń nawigację</value>
+  </data>
+  <data name="labels.delete_image" xml:space="preserve">
+    <value>Usuń obraz</value>
+  </data>
+  <data name="labels.edit" xml:space="preserve">
+    <value>Edytuj</value>
+  </data>
+  <data name="labels.menu_item_type.show_message" xml:space="preserve">
+    <value>💬 Wiadomość</value>
+  </data>
+  <data name="labels.menu_item_type.sub_menu" xml:space="preserve">
+    <value>📂 Podmenu</value>
+  </data>
+  <data name="labels.menu_item_type.support_request" xml:space="preserve">
+    <value>🆘 Wsparcie</value>
+  </data>
+  <data name="labels.menu_item_type.url" xml:space="preserve">
+    <value>🔗 Link</value>
+  </data>
+  <data name="labels.navigation.manage" xml:space="preserve">
+    <value>Zarządzanie nawigacją</value>
+  </data>
+  <data name="labels.save" xml:space="preserve">
+    <value>Zapisz</value>
   </data>
   <data name="labels.users.manage" xml:space="preserve">
-    <value />
+    <value>Zarządzanie użytkownikami</value>
   </data>
-  <data name="labels.support.requests" xml:space="preserve">
-    <value />
+  <data name="labels.welcome.manage" xml:space="preserve">
+    <value>Zarządzanie powitaniem</value>
+  </data>
+  <data name="labels.reorder.navigation" xml:space="preserve">
+    <value>Zmień kolejność nawigacji</value>
+  </data>
+  <data name="labels.edit.navigation.item" xml:space="preserve">
+    <value>Edytuj element nawigacji</value>
+  </data>
+  <data name="labels.edit.navigation.item.label" xml:space="preserve">
+    <value>Zmień nazwę przycisku</value>
+  </data>
+  <data name="labels.edit.navigation.item.url" xml:space="preserve">
+    <value>Zmień link</value>
+  </data>
+  <data name="labels.edit.navigation.item.message" xml:space="preserve">
+    <value>Zmień wiadomość</value>
+  </data>
+  <data name="lablers.navigation.set_default" xml:space="preserve">
+    <value>Ustaw jako domyślne</value>
+  </data>
+  <data name="labels.navigation.edit" xml:space="preserve">
+    <value>Edytuj nawigację</value>
+  </data>
+  <data name="labels.mode.edit" xml:space="preserve">
+    <value>Tryb edycji</value>
+  </data>
+  <data name="labels.mode.delete" xml:space="preserve">
+    <value>Tryb usuwania</value>
+  </data>
+  <data name="labels.nav.header_edit" xml:space="preserve">
+    <value>Zmień nagłówek</value>
   </data>
   <data name="labels.cancel.delete.navigation" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.navigation.manage.empty" xml:space="preserve">
-    <value />
-  </data>
-  <data name="notifications.menu_item.add.success" xml:space="preserve">
-    <value />
+    <value>Nie, zmieniłem zdanie</value>
   </data>
   <data name="labels.language" xml:space="preserve">
-    <value />
+    <value>Język</value>
   </data>
   <data name="labels.last_activity" xml:space="preserve">
-    <value />
+    <value>Ostatnia aktywność</value>
   </data>
   <data name="labels.status" xml:space="preserve">
-    <value />
+    <value>Status</value>
   </data>
   <data name="labels.blocked" xml:space="preserve">
-    <value />
+    <value>Zablokowany</value>
   </data>
   <data name="labels.unblocked" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.user_details" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.execute_command" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.change_language" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.click_button" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.sent_message" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.requested_support" xml:space="preserve">
-    <value />
-  </data>
-  <data name="messages.user.interaction_unknown" xml:space="preserve">
-    <value />
-  </data>
-  <data name="headers.interaction_history" xml:space="preserve">
-    <value />
-  </data>
-  <data name="errors.item_not_found" xml:space="preserve">
-    <value />
+    <value>Odblokowany</value>
   </data>
   <data name="labels.view_profile" xml:space="preserve">
-    <value />
+    <value>Wyświetl profil</value>
   </data>
   <data name="labels.sort.asc" xml:space="preserve">
-    <value />
+    <value>⬇️ Najpierw stare</value>
   </data>
   <data name="labels.sort.desc" xml:space="preserve">
-    <value />
+    <value>⬆️ Najpierw nowe</value>
   </data>
-  <data name="messages.user.click_submenu" xml:space="preserve">
-    <value />
+  <data name="labels.reply" xml:space="preserve">
+    <value>Odpowiedz</value>
   </data>
-  <data name="messages.user.click_show_message" xml:space="preserve">
-    <value />
+  <data name="labels.close_request" xml:space="preserve">
+    <value>Zamknij zgłoszenie</value>
+  </data>
+  <data name="labels.navigation.delete_header_image" xml:space="preserve">
+    <value>Usuń obraz nagłówka</value>
+  </data>
+  <data name="labels.navigation.header_edit_image" xml:space="preserve">
+    <value>Zmień obraz</value>
+  </data>
+  <data name="labels.navigation.delete_header" xml:space="preserve">
+    <value>Usuń nagłówek</value>
+  </data>
+  <data name="labels.language_settings" xml:space="preserve">
+    <value>Ustawienia języka</value>
+  </data>
+  <data name="labels.set_admin" xml:space="preserve">
+    <value>Ustaw jako administratora</value>
+  </data>
+  <data name="labels.unset_admin" xml:space="preserve">
+    <value>Usuń uprawnienia administratora</value>
+  </data>
+  <data name="headers.admin.panel" xml:space="preserve">
+    <value>Panel administratora</value>
+  </data>
+  <data name="headers.welcome.manage" xml:space="preserve">
+    <value>Wiadomość powitalna</value>
+  </data>
+  <data name="headers.language.selection" xml:space="preserve">
+    <value>Wybór języka</value>
+  </data>
+  <data name="headers.navigation.manage" xml:space="preserve">
+    <value>Zarządzanie nawigacją</value>
+  </data>
+  <data name="headers.navigation.manage.empty" xml:space="preserve">
+    <value>Menu nawigacji jest puste</value>
+  </data>
+  <data name="headers.navigation" xml:space="preserve">
+    <value>Nawigacja</value>
+  </data>
+  <data name="headers.navigation.view" xml:space="preserve">
+    <value>Podgląd nawigacji</value>
+  </data>
+  <data name="headers.navigation.edit" xml:space="preserve">
+    <value>Edytuj &lt;b&gt;{0}&lt;/b&gt;
+
+&lt;b&gt;Nagłówek:&lt;/b&gt; {1}
+&lt;b&gt;Obraz:&lt;/b&gt; {2}</value>
+  </data>
+  <data name="headers.item_type_selection" xml:space="preserve">
+    <value>Wybierz typ przycisku</value>
+  </data>
+  <data name="headers.item_delete" xml:space="preserve">
+    <value>Wybierz element, który chcesz usunąć</value>
+  </data>
+  <data name="headers.navigation_reorder" xml:space="preserve">
+    <value>Zmień kolejność nawigacji</value>
+  </data>
+  <data name="headers.navigation_url_item_edit" xml:space="preserve">
+    <value>Edytuj {0}
+
+&lt;b&gt;Nazwa:&lt;/b&gt; {1}
+&lt;b&gt;Link:&lt;/b&gt; {2}</value>
+  </data>
+  <data name="headers.navigation_message_item_edit" xml:space="preserve">
+    <value>Edytuj {0}
+
+&lt;b&gt;Nazwa:&lt;/b&gt; {1}
+&lt;b&gt;Treść wiadomości:&lt;/b&gt;
+{2}</value>
+  </data>
+  <data name="headers.navigation_submenu_item_edit" xml:space="preserve">
+    <value>Edytuj {0}
+
+&lt;b&gt;Nazwa:&lt;/b&gt; {1}</value>
   </data>
   <data name="headers.users.manage" xml:space="preserve">
-    <value />
+    <value>Zarządzanie użytkownikami</value>
   </data>
+  <data name="headers.user_details" xml:space="preserve">
+    <value>Szczegóły użytkownika</value>
+  </data>
+  <data name="headers.interaction_history" xml:space="preserve">
+    <value>Historia interakcji</value>
+  </data>
+  <data name="headers.settings" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="headers.support_request.manage" xml:space="preserve">
+    <value>Zarządzanie zgłoszeniem</value>
+  </data>
+  <data name="headers.language_settings" xml:space="preserve">
+    <value>Ustawienia języka</value>
+  </data>
+  <data name="labels.delete.navigation.menu.confirm" xml:space="preserve">
+    <value>Tak, usuń nawigacje</value>
+  </data>
+  <data name="headers.navigation_support_edit" xml:space="preserve">
+    <value>Edytuj {0}
+
+&lt;b&gt;Nazwa:&lt;/b&gt; {1}</value>
+  </data>
+  <data name="messages.welcome" xml:space="preserve">
+    <value>Witamy!</value>
+</data>
+<data name="messages.welcome.edit.prompt" xml:space="preserve">
+    <value>Wprowadź nową wiadomość powitalną</value>
+</data>
+<data name="messages.language.prompt" xml:space="preserve">
+    <value>Wybierz język z listy poniżej</value>
+</data>
+<data name="messages.save.success" xml:space="preserve">
+    <value>✅ Pomyślnie zapisano</value>
+</data>
+<data name="messages.navigation.add.prompt" xml:space="preserve">
+    <value>Wprowadź nazwę dla nowego menu</value>
+</data>
+<data name="messages.navigation.add.success" xml:space="preserve">
+    <value>✅ Menu zostało pomyślnie dodane</value>
+</data>
+<data name="messages.navigation.no_items" xml:space="preserve">
+    <value>Menu nie zawiera jeszcze żadnych przycisków</value>
+</data>
+<data name="messages.navigation.delete.confirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć to menu?</value>
+</data>
+<data name="messages.enter.button_text" xml:space="preserve">
+    <value>Wprowadź nazwę przycisku</value>
+</data>
+<data name="messages.enter.button_value" xml:space="preserve">
+    <value>Wprowadź wartość przycisku</value>
+</data>
+<data name="messages.enter.button_url" xml:space="preserve">
+    <value>Wprowadź adres URL</value>
+</data>
+<data name="messages.enter.button_message" xml:space="preserve">
+    <value>Wprowadź wiadomość, która ma zostać wyświetlona</value>
+</data>
+<data name="messages.not_implemented_yet" xml:space="preserve">
+    <value>Jeszcze nie zaimplementowano</value>
+</data>
+<data name="messaegs.nav_header.edit.prompt" xml:space="preserve">
+    <value>Wprowadź nowy nagłówek menu</value>
+</data>
+<data name="messages.navigation.item.delete.confirmation" xml:space="preserve">
+    <value>Czy usunąć ten przycisk?</value>
+</data>
+<data name="messages.enter.menu.title" xml:space="preserve">
+    <value>Wprowadź tytuł menu</value>
+</data>
+<data name="messages.user.execute_command" xml:space="preserve">
+    <value>Wykonano polecenie: {0}</value>
+</data>
+<data name="messages.user.click_button" xml:space="preserve">
+    <value>Naciśnięto przycisk: {0}</value>
+</data>
+<data name="messages.user.click_submenu" xml:space="preserve">
+    <value>Otworzono podmenu: {0}</value>
+</data>
+<data name="messages.user.click_show_message" xml:space="preserve">
+    <value>Wyświetlono wiadomość: {0}</value>
+</data>
+<data name="messages.user.change_language" xml:space="preserve">
+    <value>Język został zmieniony na: {0}</value>
+</data>
+<data name="messages.user.sent_message" xml:space="preserve">
+    <value>Użytkownik wysłał wiadomość</value>
+</data>
+<data name="messages.user.requested_support" xml:space="preserve">
+    <value>Poproszono o pomoc techniczną</value>
+</data>
+<data name="messages.user.interaction_unknown" xml:space="preserve">
+    <value>Nieznana interakcja</value>
+</data>
+<data name="messages.enter.support_request_message" xml:space="preserve">
+    <value>Dzień dobry! Dziękujemy za kontakt z pomocą techniczną. Prosimy opisać swój problem — gdy tylko operator będzie dostępny, otrzymasz odpowiedź.</value>
+</data>
+<data name="messages.enter.support_request_reply" xml:space="preserve">
+    <value>Wprowadź odpowiedź dla użytkownika</value>
+</data>
+<data name="messages.support.reply_message" xml:space="preserve">
+    <value>Odpowiedź od wsparcia:</value>
+</data>
+<data name="messages.delete_header_image.prompt" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć obraz?</value>
+</data>
+<data name="messages.nav_header_image.edit.prompt" xml:space="preserve">
+    <value>Wyślij nowy obraz nagłówka</value>
+</data>
+<data name="messages.delete_header.prompt" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć nagłówek?</value>
+</data>
+<data name="messages.set_admin" xml:space="preserve">
+    <value>Użytkownik został administratorem</value>
+</data>
+<data name="messages.unset_admin" xml:space="preserve">
+    <value>Użytkownik nie jest już administratorem</value>
+</data>
+<data name="errors.not_admin" xml:space="preserve">
+    <value>⚠️ Wymagane uprawnienia administratora</value>
+</data>
+<data name="errors.user_not_found" xml:space="preserve">
+    <value>⚠️ Użytkownik nie został znaleziony</value>
+</data>
+<data name="errors.invalid_command" xml:space="preserve">
+    <value>⚠️ Nieprawidłowa komenda</value>
+</data>
+<data name="errors.invalid_input" xml:space="preserve">
+    <value>⚠️ Nieprawidłowe dane wejściowe</value>
+</data>
+<data name="errors.language_not_supported" xml:space="preserve">
+    <value>⚠️ Język nie jest obsługiwany</value>
+</data>
+<data name="errors.no_languages_available" xml:space="preserve">
+    <value>⚠️ Brak dostępnych języków</value>
+</data>
+<data name="errors.session_data_missing" xml:space="preserve">
+    <value>⚠️ Brakuje danych sesji</value>
+</data>
+<data name="errors.invalid_menu_id" xml:space="preserve">
+    <value>⚠️ Nieprawidłowe ID menu</value>
+</data>
+<data name="errors.menu_not_found" xml:space="preserve">
+    <value>⚠️ Menu nie zostało znalezione</value>
+</data>
+<data name="errors.invalid_action_type" xml:space="preserve">
+    <value>⚠️ Nieprawidłowy typ akcji</value>
+</data>
+<data name="errors.invalid_session_data" xml:space="preserve">
+    <value>⚠️ Nieprawidłowe dane sesji</value>
+</data>
+<data name="errors.invalid_menu_item_id" xml:space="preserve">
+    <value>⚠️ Nieprawidłowe ID przycisku</value>
+</data>
+<data name="errors.invalid_url" xml:space="preserve">
+    <value>⚠️ Nieprawidłowy URL</value>
+</data>
+<data name="errors.invalid_text" xml:space="preserve">
+    <value>⚠️ Nieprawidłowy tekst</value>
+</data>
+<data name="errors.item_not_found" xml:space="preserve">
+    <value>⚠️ Element nie został znaleziony</value>
+</data>
+<data name="errors.request_not_found" xml:space="preserve">
+    <value>⚠️ Żądanie nie zostało znalezione</value>
+</data>
+<data name="errors.request_already_resolved" xml:space="preserve">
+    <value>⚠️ Zgłoszenie zostało zakończone. W przypadku nowych pytań prosimy o przesłanie nowego zgłoszenia.</value>
+</data>
+<data name="errors.already_admin" xml:space="preserve">
+    <value>⚠️ Użytkownik już jest administratorem</value>
+</data>
+<data name="errors.already_not_admin" xml:space="preserve">
+    <value>⚠️ Użytkownik nie jest administratorem</value>
+</data>
+<data name="notifications.language.changed" xml:space="preserve">
+    <value>✅ Język został pomyślnie zmieniony</value>
+</data>
+<data name="notifications.menu_item.add.success" xml:space="preserve">
+    <value>✅ Przycisk został pomyślnie dodany</value>
+</data>
+<data name="notifications.menu_item.delete.success" xml:space="preserve">
+    <value>✅ Przycisk został usunięty</value>
+</data>
+<data name="notifications.menu_item.edit.success" xml:space="preserve">
+    <value>✅ Przycisk został zaktualizowany</value>
+</data>
+<data name="notifications.nav_header.edit.success" xml:space="preserve">
+    <value>✅ Nagłówek został zaktualizowany</value>
+</data>
+<data name="notifications.navigation.set_default.success" xml:space="preserve">
+    <value>✅ Menu zostało ustawione jako domyślne</value>
+</data>
+<data name="notifications.welcome.edit.success" xml:space="preserve">
+    <value>✅ Wiadomość powitalna została zaktualizowana</value>
+</data>
+<data name="notifications.welcome.image.removed" xml:space="preserve">
+    <value>✅ Obraz został usunięty</value>
+</data>
+<data name="notifications.navigation.delete.success" xml:space="preserve">
+    <value>✅ Menu zostało usunięte</value>
+</data>
+<data name="notifications.support_request.created" xml:space="preserve">
+    <value>✅ Zgłoszenie do pomocy technicznej zostało wysłane</value>
+</data>
+<data name="notifications.support_request.reply_received" xml:space="preserve">
+    <value>❗️
+
+Nowe zgłoszenie do pomocy technicznej
+
+&lt;b&gt;Użytkownik:&lt;/b&gt; {0} {1}
+&lt;b&gt;ID użytkownika:&lt;/b&gt; {2}
+&lt;b&gt;Treść wiadomości:&lt;/b&gt; {3}</value>
+</data>
+<data name="notifications.support_request.reply_sent" xml:space="preserve">
+    <value>✅ Odpowiedź została wysłana do użytkownika</value>
+</data>
+<data name="notifications.support_request.resolved" xml:space="preserve">
+    <value>✅ Zgłoszenie zostało zamknięte</value>
+</data>
+<data name="notifications.support_request.resolved_admin" xml:space="preserve">
+    <value>✅
+
+Zgłoszenie do pomocy technicznej zostało zakończone
+
+&lt;b&gt;Użytkownik:&lt;/b&gt; {0} {1}
+&lt;b&gt;ID użytkownika:&lt;/b&gt; {2}</value>
+</data>
+<data name="notifications.request_user_session_closed" xml:space="preserve">
+    <value>📌 Zgłoszenie zostało zakończone. W przypadku nowych pytań prosimy o przesłanie nowego zgłoszenia.</value>
+</data>
+<data name="notifications.user_session_closed_prompt" xml:space="preserve">
+    <value>⚠️ Sesja została zakończona. Możesz rozpocząć od nowa.</value>
+</data>
+<data name="notifications.header_image.deleted" xml:space="preserve">
+    <value>✅ Obraz nagłówka został usunięty</value>
+</data>
+<data name="notification.admin.set" xml:space="preserve">
+    <value>✅ Użytkownik został administratorem</value>
+</data>
+<data name="notification.admin.unset" xml:space="preserve">
+    <value>✅ Użytkownik stracił uprawnienia administratora</value>
+</data>
 </root>

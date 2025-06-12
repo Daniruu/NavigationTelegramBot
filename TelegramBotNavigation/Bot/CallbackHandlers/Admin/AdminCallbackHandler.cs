@@ -4,6 +4,8 @@ using TelegramBotNavigation.Bot.Templates.Admin;
 using TelegramBotNavigation.Bot.Templates;
 using TelegramBotNavigation.Repositories.Interfaces;
 using TelegramBotNavigation.Services.Interfaces;
+using TelegramBotNavigation.Services.Sessions;
+using TelegramBotNavigation.Services;
 
 namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin
 {
@@ -16,18 +18,25 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin
         private readonly ITelegramMessageService _messageService;
         private readonly ILocalizationManager _localizer;
         private readonly ILogger<AdminCallbackHandler> _logger;
+        private readonly ISessionManager _sessionManager;
+        private readonly ICallbackAlertService _callbackAlertService;
+
         public AdminCallbackHandler(
             IUserService userService,
             IUserRepository userRepository,
             ITelegramMessageService messageService,
             ILocalizationManager localizer,
-            ILogger<AdminCallbackHandler> logger)
+            ILogger<AdminCallbackHandler> logger,
+            ISessionManager sessionManager,
+            ICallbackAlertService callbackAlertService)
         {
             _userService = userService;
             _userRepository = userRepository;
             _messageService = messageService;
             _localizer = localizer;
             _logger = logger;
+            _sessionManager = sessionManager;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -39,12 +48,13 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin
             var user = await _userRepository.GetByIdAsync(userId);
             if (user == null) return;
 
+            await _sessionManager.ClearSessionAsync(userId);
+
             if (!_userService.IsAdmin(user))
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, showAlert: true, cancellationToken: ct);
                 return;
             }
 

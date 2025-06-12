@@ -37,6 +37,9 @@ namespace TelegramBotNavigation.Services
                     };
                     return InlineKeyboardButton.WithCallbackData(label, callback);
 
+                case MenuActionType.SupportRequest:
+                    return InlineKeyboardButton.WithCallbackData(label, CallbackKeys.SupportRequest);
+
                 default:
                     return InlineKeyboardButton.WithCallbackData(label, "noop");
             }

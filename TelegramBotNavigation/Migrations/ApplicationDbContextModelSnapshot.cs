@@ -22,6 +22,27 @@ namespace TelegramBotNavigation.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("TelegramBotNavigation.Models.BotSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BotSettings");
+                });
+
             modelBuilder.Entity("TelegramBotNavigation.Models.LanguageSetting", b =>
                 {
                     b.Property<int>("Id")
@@ -150,6 +171,37 @@ namespace TelegramBotNavigation.Migrations
                     b.ToTable("NavigationMessages");
                 });
 
+            modelBuilder.Entity("TelegramBotNavigation.Models.SupportMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsFromAdmin")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("SentAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("NOW()");
+
+                    b.Property<int>("SupportRequestId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupportRequestId");
+
+                    b.ToTable("SupportMessages");
+                });
+
             modelBuilder.Entity("TelegramBotNavigation.Models.SupportRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -158,16 +210,24 @@ namespace TelegramBotNavigation.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<int?>("AdminMessageId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ClosedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int?>("TopicId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -369,6 +429,17 @@ namespace TelegramBotNavigation.Migrations
                     b.Navigation("SubMenu");
                 });
 
+            modelBuilder.Entity("TelegramBotNavigation.Models.SupportMessage", b =>
+                {
+                    b.HasOne("TelegramBotNavigation.Models.SupportRequest", "SupportRequest")
+                        .WithMany("Messages")
+                        .HasForeignKey("SupportRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SupportRequest");
+                });
+
             modelBuilder.Entity("TelegramBotNavigation.Models.SupportRequest", b =>
                 {
                     b.HasOne("TelegramBotNavigation.Models.TelegramUser", "User")
@@ -394,6 +465,11 @@ namespace TelegramBotNavigation.Migrations
             modelBuilder.Entity("TelegramBotNavigation.Models.Menu", b =>
                 {
                     b.Navigation("MenuItems");
+                });
+
+            modelBuilder.Entity("TelegramBotNavigation.Models.SupportRequest", b =>
+                {
+                    b.Navigation("Messages");
                 });
 #pragma warning restore 612, 618
         }

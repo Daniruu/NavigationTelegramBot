@@ -1,11 +1,16 @@
-﻿using Telegram.Bot.Types;
+﻿using System;
+using System.Reflection.Emit;
+using Telegram.Bot.Types;
 using TelegramBotNavigation.Bot.Shared;
 using TelegramBotNavigation.Bot.Templates;
+using TelegramBotNavigation.Bot.Templates.Admin;
 using TelegramBotNavigation.Enums;
 using TelegramBotNavigation.Models;
 using TelegramBotNavigation.Repositories.Interfaces;
+using TelegramBotNavigation.Services;
 using TelegramBotNavigation.Services.Interfaces;
 using TelegramBotNavigation.Services.Sessions;
+using TelegramBotNavigation.Utils;
 using static TelegramBotNavigation.Bot.Shared.LocalizationKeys;
 
 namespace TelegramBotNavigation.Bot.SessionHandlers
@@ -20,6 +25,9 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
         private readonly ILocalizationManager _localizer;
         private readonly IMenuRepository _menuRepository;
         private readonly ILogger<ItemAddLabelSessionHandler> _logger;
+        private readonly ITranslationService _translationService;
+        private readonly INavigationMessageService _navigationMessageService;
+        private readonly ILanguageSettingRepository _languageSettingRepository;
 
         public ItemAddLabelSessionHandler(
             IUserRepository userRepository,
@@ -27,7 +35,10 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
             ITelegramMessageService messageService,
             ILocalizationManager localizer,
             IMenuRepository menuRepository,
-            ILogger<ItemAddLabelSessionHandler> logger)
+            ILogger<ItemAddLabelSessionHandler> logger,
+            ITranslationService translationService,
+            INavigationMessageService navigationMessageService,
+            ILanguageSettingRepository languageSettingRepository)
         {
             _userRepository = userRepository;
             _sessionManager = sessionManager;
@@ -35,6 +46,9 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
             _localizer = localizer;
             _menuRepository = menuRepository;
             _logger = logger;
+            _translationService = translationService;
+            _navigationMessageService = navigationMessageService;
+            _languageSettingRepository = languageSettingRepository;
         }
 
         public async Task HandleAsync(Message message, SessionData session, CancellationToken ct)
@@ -99,10 +113,52 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
                     break;
 
                 case MenuActionType.SupportRequest:
+                    if (!int.TryParse(menuIdStr, out var menuId))
+                    {
+                        _logger.LogError("Invalid session data format for UserId: {UserId}. MenuIdStr: {MenuIdStr}", userId, menuIdStr);
+                        var error = await _localizer.GetInterfaceTranslation(Errors.InvalidSessionData, user.LanguageCode);
+                        await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(error), ct);
+                        return;
+                    }
+
+                    var menu = await _menuRepository.GetByIdAsync(menuId);
+                    if (menu == null)
+                    {
+                        _logger.LogError("Menu with ID {MenuId} not found.", menuId);
+                        var error = await _localizer.GetInterfaceTranslation(Errors.MenuNotFound, user.LanguageCode);
+                        await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(error), ct);
+                        return;
+                    }
+
+                    var lastRow = menu.MenuItems.Any()
+                        ? menu.MenuItems.Max(i => i.Row)
+                        : -1;
+
+                    var newItem = new MenuItem
+                    {
+                        MenuId = menu.Id,
+                        LabelTranslationKey = $"menuitem.{Guid.NewGuid()}",
+                        ActionType = type,
+                        Row = lastRow + 1,
+                        Order = 0,
+                    };
+                    menu.MenuItems.Add(newItem);
+                    await _menuRepository.SaveChangesAsync();
+
+                    var languageCode = LanguageCodeHelper.FromTelegramTag(langStr);
+
+                    await _translationService.SetTranslationAsync(newItem.LabelTranslationKey, languageCode, text);
+
+                    await _navigationMessageService.UpdateAllNavigationMessagesAsync(ct);
+
                     await _sessionManager.ClearSessionAsync(userId);
 
-                    var SupportRequestWarning = await _localizer.GetInterfaceTranslation(Messages.NotImplementedYet, user.LanguageCode);
-                    await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(SupportRequestWarning), ct);
+                    var successMessage = await _localizer.GetInterfaceTranslation(Notifications.MenuItemAddSuccess, user.LanguageCode);
+                    await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(successMessage), ct);
+
+                    var template = await NavigationEditTemplate.CreateAsync(user.LanguageCode, languageCode, _localizer, _languageSettingRepository, menu);
+                    await _messageService.SendTemplateAsync(chatId, template, ct);
+
                     break;
 
                 default:

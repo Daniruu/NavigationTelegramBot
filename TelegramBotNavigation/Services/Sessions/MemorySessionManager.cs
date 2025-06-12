@@ -11,9 +11,17 @@ namespace TelegramBotNavigation.Services.Sessions
             _cache = cache;
         }
 
-        public Task SetSessionAsync(long userId, SessionData data, TimeSpan ttl)
+        public Task SetSessionAsync(long userId, SessionData data, TimeSpan? ttl = null)
         {
-            _cache.Set(userId,data, ttl);
+            if (ttl.HasValue)
+            {
+                _cache.Set(userId, data, ttl.Value);
+            }
+            else
+            {
+                _cache.Set(userId, data);
+            }
+
             return Task.CompletedTask;
         }
 

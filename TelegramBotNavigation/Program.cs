@@ -21,6 +21,9 @@ using TelegramBotNavigation.Bot.SessionHandlers;
 using TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation;
 using TelegramBotNavigation.Bot.CallbackHandlers.Admin.WelcomeMessage;
 using TelegramBotNavigation.Bot.CallbackHandlers.Admin.Users;
+using TelegramBotNavigation.Bot.CallbackHandlers.Admin.Support;
+using TelegramBotNavigation.Bot.CallbackHandlers.Admin.Settings;
+using TelegramBotNavigation.Bot.MessageHandlers;
 
 namespace TelegramBotNavigation
 {
@@ -46,6 +49,7 @@ namespace TelegramBotNavigation
 
             builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
+
             // Telegram Bot Client
             builder.Services.AddSingleton<ITelegramBotClient>(_ => new TelegramBotClient(botToken));
 
@@ -58,12 +62,17 @@ namespace TelegramBotNavigation
             builder.Services.AddScoped<CommandDispatcher>();
             builder.Services.AddScoped<CallbackDispatcher>();
             builder.Services.AddScoped<SessionDispatcher>();
+            builder.Services.AddScoped<MessageDispatcher>();
+            builder.Services.AddSingleton<ITelegramClient, TelegramClient>();
+
 
             // Command Handlers
             builder.Services.AddScoped<ICommandHandler, StartCommandHandler>();
             builder.Services.AddScoped<ICommandHandler, LanguageCommandHandler>();
             builder.Services.AddScoped<ICommandHandler, AdminCommandHandler>();
             builder.Services.AddScoped<ICommandHandler, NavigationCommandHandler>();
+            builder.Services.AddScoped<ICommandHandler, SetGroupCommandHandler>();
+            builder.Services.AddScoped<ICommandHandler, SetAdminCommandHandler>();
 
             // Callback Handlers
             builder.Services.AddScoped<ICallbackHandler, AdminCallbackHandler>();
@@ -89,6 +98,13 @@ namespace TelegramBotNavigation
             builder.Services.AddScoped<ICallbackHandler, ItemEditLabelCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, ItemEditUrlCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, NavigationHeaderEditCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, DeleteHeaderConfirmtaionCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, DeleteHeaderCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, NavigationHeaderImageEditCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, DeleteHeaderImageConfirmationCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, DeleteHeaderImageCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, LanguageSettingsCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, LanguageMoveCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, NavigationSetDefaultCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, ShowMessageCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, ItemEditMessageCallbackHandler>();
@@ -96,6 +112,12 @@ namespace TelegramBotNavigation
             builder.Services.AddScoped<ICallbackHandler, NavigationMessageCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, UsersCallbackHandler>();
             builder.Services.AddScoped<ICallbackHandler, UserDetailsCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, SupportRequestCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, SupportReplyCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, SettingsCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, SupportResolveCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, SetAdminCallbackHandler>();
+            builder.Services.AddScoped<ICallbackHandler, UnsetAdminCallbackHandler>();
 
             // Session Handlers
             builder.Services.AddScoped<ISessionHandler, WelcomeEditSessionHandler>();
@@ -105,9 +127,15 @@ namespace TelegramBotNavigation
             builder.Services.AddScoped<ISessionHandler, ItemEditLabelSessionHandler>();
             builder.Services.AddScoped<ISessionHandler, ItemEditUrlSessionHandler>();
             builder.Services.AddScoped<ISessionHandler, NavigationHeaderEditSessionHandler>();
+            builder.Services.AddScoped<ISessionHandler, NavigationHeaderEditImageSessionHandler>();
             builder.Services.AddScoped<ISessionHandler, ItemAddMessageSessionHandler>();
             builder.Services.AddScoped<ISessionHandler, ItemEditMessageSessionHandler>();
             builder.Services.AddScoped<ISessionHandler, ItemAddSubmenuSessionHandler>();
+            builder.Services.AddScoped<ISessionHandler, SupportRequestSessionHandler>();
+            builder.Services.AddScoped<ISessionHandler, SupportReplySessionHandler>();
+
+            //Message Handlers
+            builder.Services.AddScoped<IMessageHandler, AdminReplyMessageHandler>();
 
             // Services
             builder.Services.AddScoped<IUserService, UserService>();
@@ -121,6 +149,8 @@ namespace TelegramBotNavigation
             builder.Services.AddScoped<INavigationMessageService, NavigationMessageService>();
             builder.Services.AddScoped<IUserInteractionService, UserInteractionService>();
             builder.Services.AddScoped<ICallbackAlertService, CallbackAlertService>();
+            builder.Services.AddScoped<ISupportRequestService, SupportRequestService>();
+            builder.Services.AddScoped<IBotSettingsService, BotSettingsService>();
 
             // Services for Sessions
             builder.Services.AddSingleton<ISessionManager, MemorySessionManager>();
@@ -136,6 +166,9 @@ namespace TelegramBotNavigation
             builder.Services.AddScoped<INavigationMessageRepository, NavigationMessageRepository>();
             builder.Services.AddScoped<IUserInteractionRepository, UserInteractionRepository>();
             builder.Services.AddScoped<IMenuItemRepository, MenuItemRepository>();
+            builder.Services.AddScoped<ISupportRequestRepository, SupportRequestRepository>();
+            builder.Services.AddScoped<ISupportMessageRepository, SupportMessageRepository>();
+            builder.Services.AddScoped<IBotSettingsRepository, BotSettingsRepository>();
 
             var app = builder.Build();
 

@@ -19,7 +19,6 @@ namespace TelegramBotNavigation.Bot.SessionHandlers
         private readonly ILocalizationManager _localizer;
         private readonly ISessionManager _sessionManager;
         private readonly ITelegramMessageService _messageService;
-        private readonly ICallbackAlertService _callbackAlertService;
 
         public NavigationAddSessionHandler(
             IUserRepository userRepository, 

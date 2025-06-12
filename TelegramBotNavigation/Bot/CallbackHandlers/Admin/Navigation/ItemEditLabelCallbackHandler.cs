@@ -4,10 +4,9 @@ using TelegramBotNavigation.Bot.Templates.Admin;
 using TelegramBotNavigation.Bot.Templates;
 using TelegramBotNavigation.Repositories.Interfaces;
 using TelegramBotNavigation.Services.Interfaces;
-using TelegramBotNavigation.Enums;
-using TelegramBotNavigation.Repositories;
 using TelegramBotNavigation.Utils;
 using TelegramBotNavigation.Services.Sessions;
+using static TelegramBotNavigation.Bot.Shared.LocalizationKeys;
 
 namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
 {
@@ -23,6 +22,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
         private readonly IMenuRepository _menuRepository;
         private readonly ILanguageSettingRepository _languageSettingRepository;
         private readonly ISessionManager _sessionManager;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public ItemEditLabelCallbackHandler(
             IUserRepository userRepository, 
@@ -31,7 +31,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             ILogger<ItemEditLabelCallbackHandler> logger, 
             IMenuRepository menuRepository, 
             ILanguageSettingRepository languageSettingRepository, 
-            ISessionManager sessionManager)
+            ISessionManager sessionManager,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -41,6 +42,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             _menuRepository = menuRepository;
             _languageSettingRepository = languageSettingRepository;
             _sessionManager = sessionManager;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -55,9 +57,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             if (!_userService.IsAdmin(user))
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
-                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(Errors.NotAdmin, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -67,16 +68,16 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             if (!int.TryParse(menuIdStr, out var menuId))
             {
                 _logger.LogWarning("Invalid menuId format: {MenuIdStr}", menuIdStr);
-                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidMenuId, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(errorMessage), ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(Errors.InvalidMenuId, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
             var menu = await _menuRepository.GetByIdAsync(menuId);
             if (menu == null)
             {
-                var error = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.MenuNotFound, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(error), ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(Errors.MenuNotFound, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -84,8 +85,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             if (!int.TryParse(menuItemIdStr, out var menuItemId))
             {
                 _logger.LogWarning("Invalid menuItemId format: {menuItemIdStr}", menuItemIdStr);
-                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidMenuItemId, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(errorMessage), ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(Errors.InvalidMenuItemId, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 

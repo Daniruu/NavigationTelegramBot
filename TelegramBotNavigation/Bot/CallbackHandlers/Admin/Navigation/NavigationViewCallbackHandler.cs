@@ -5,6 +5,7 @@ using TelegramBotNavigation.Bot.Templates.Admin;
 using TelegramBotNavigation.Enums;
 using TelegramBotNavigation.Repositories.Interfaces;
 using TelegramBotNavigation.Services.Interfaces;
+using TelegramBotNavigation.Services.Sessions;
 using TelegramBotNavigation.Utils;
 
 namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
@@ -21,6 +22,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
         private readonly IMenuRepository _menuRepository;
         private readonly ILanguageSettingRepository _languageSettingRepository;
         private readonly IMenuButtonBuilder _buttonBuilder;
+        private readonly ISessionManager _sessionManager;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public NavigationViewCallbackHandler(
             IUserRepository userRepository,
@@ -30,7 +33,9 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             ILocalizationManager localizer,
             IMenuRepository menuRepository,
             ILanguageSettingRepository languageSettingRepository,
-            IMenuButtonBuilder buttonBuilder)
+            IMenuButtonBuilder buttonBuilder,
+            ISessionManager sessionManager,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -40,6 +45,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             _menuRepository = menuRepository;
             _languageSettingRepository = languageSettingRepository;
             _buttonBuilder = buttonBuilder;
+            _sessionManager = sessionManager;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -55,10 +62,11 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("Access denied for user {UserId} when trying to access admin callback.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
+
+            await _sessionManager.ClearSessionAsync(userId);
 
             if (args.Length == 0) return;
 
@@ -67,15 +75,15 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("Invalid menuId format: {MenuIdStr}", menuIdStr);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidMenuId, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(errorMessage), ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
             var menu = await _menuRepository.GetByIdAsync(menuId);
             if (menu == null)
             {
-                var error = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.MenuNotFound, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(error), ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.MenuNotFound, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 

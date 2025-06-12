@@ -25,6 +25,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.WelcomeMessage
         private readonly ILogger<WelcomeRemoveImageCallbackHandler> _logger;
         private readonly ILanguageSettingRepository _languageSettingRepository;
         private readonly IWelcomeMessageProvider _welcomeMessageProvider;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public WelcomeRemoveImageCallbackHandler(
             IUserRepository userRepository,
@@ -35,7 +36,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.WelcomeMessage
             ISessionManager sessionManager,
             ILogger<WelcomeRemoveImageCallbackHandler> logger,
             ILanguageSettingRepository languageSettingRepository,
-            IWelcomeMessageProvider welcomeMessageProvider)
+            IWelcomeMessageProvider welcomeMessageProvider,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -46,6 +48,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.WelcomeMessage
             _logger = logger;
             _languageSettingRepository = languageSettingRepository;
             _welcomeMessageProvider = welcomeMessageProvider;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -61,8 +64,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.WelcomeMessage
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -76,7 +78,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.WelcomeMessage
             await _welcomeMessageRepository.RemoveImageAsync(languageCode);
 
             var success = await _localizer.GetInterfaceTranslation(LocalizationKeys.Notifications.WelcomeImageRemoved, user.LanguageCode);
-            await _messageService.EditTemplateAsync(chatId, messageId, TelegramTemplate.Create(success), ct);
+            await _callbackAlertService.ShowAsync(query.Id, success, cancellationToken: ct);
 
             var template = await WelcomeManageTemplate.CreateAsync(user.LanguageCode, languageCode, _localizer, _languageSettingRepository, _welcomeMessageProvider);
             await _messageService.SendTemplateAsync(chatId, template, ct);

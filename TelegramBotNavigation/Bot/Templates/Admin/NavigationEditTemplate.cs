@@ -42,7 +42,7 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
                 {
                     var button = InlineKeyboardButton.WithCallbackData(
                         $"✏️ {await localizer.GetCustomTranslationAsync(item.LabelTranslationKey, displayLang)}" ?? "✏️ [No label]",
-                        $"{CallbackKeys.ItemEdit}:{menu.Id}:{item.Id}:{displayLang.ToLanguageTag()}");
+                        $"{ItemEdit}:{menu.Id}:{item.Id}:{displayLang.ToLanguageTag()}");
                     row.Add(button);
                 }
                 navButtons.Add(row.ToArray());
@@ -71,31 +71,56 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
             })
             .ToArray();
 
-            var manageButtons = new List<InlineKeyboardButton[]>
+            var manageButtons = new List<InlineKeyboardButton[]>();
+
+            manageButtons.Add(new[]
             {
-                new[]
+                InlineKeyboardButton.WithCallbackData(
+                    await localizer.GetInterfaceTranslation(Labels.AddNavigationItem, userLang), $"{NavigationItemAdd}:{menu.Id}:{displayLang.ToLanguageTag()}")
+            });
+
+            manageButtons.Add(new[]
+            {
+                InlineKeyboardButton.WithCallbackData(
+                    await localizer.GetInterfaceTranslation(Labels.NavigationHeaderEdit, userLang), $"{NavigationHeaderEdit}:{menu.Id}:{displayLang.ToLanguageTag()}")
+            });
+
+            if (headerImage != null)
+            {
+                manageButtons.Add(new[]
                 {
                     InlineKeyboardButton.WithCallbackData(
-                        await localizer.GetInterfaceTranslation(Labels.AddNavigationItem, userLang), $"{NavigationItemAdd}:{menu.Id}:{displayLang.ToLanguageTag()}")
-                },
-                new[]
-                {
+                        await localizer.GetInterfaceTranslation(Labels.NavigationHeaderEditImage, userLang), $"{NavigationHeaderImageEdit}:{menu.Id}:{displayLang.ToLanguageTag()}"),
                     InlineKeyboardButton.WithCallbackData(
-                        await localizer.GetInterfaceTranslation(Labels.NavigationHeaderEdit, userLang), $"{NavigationHeaderEdit}:{menu.Id}:{displayLang.ToLanguageTag()}"),
+                        await localizer.GetInterfaceTranslation(Labels.NavigationDeleteHeaderImage, userLang), $"{DeleteHeaderImageConfirmation}:{menu.Id}:{displayLang.ToLanguageTag()}"),
+                });
+            }
+            else
+            {
+                manageButtons.Add(
+                [
                     InlineKeyboardButton.WithCallbackData(
+                        await localizer.GetInterfaceTranslation(Labels.NavigationHeaderEditImage, userLang), $"{NavigationHeaderImageEdit}:{menu.Id}:{displayLang.ToLanguageTag()}"),
+                ]);
+            }
+
+            manageButtons.Add(new[]
+            {
+                InlineKeyboardButton.WithCallbackData(
                         await localizer.GetInterfaceTranslation(Labels.ReorderNavigation, userLang), $"{NavigationReorder}:{menu.Id}:{displayLang.ToLanguageTag()}")
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData(
+            });
+
+            manageButtons.Add(new[]
+            {
+                InlineKeyboardButton.WithCallbackData(
                         await localizer.GetInterfaceTranslation(Labels.DeleteMode, userLang), $"{ItemDeleteOptions}:{menu.Id}:{displayLang.ToLanguageTag()}")
-                },
-                new[]
-                {
-                    InlineKeyboardButton.WithCallbackData(
+            });
+
+            manageButtons.Add(new[]
+            {
+                InlineKeyboardButton.WithCallbackData(
                         await localizer.GetInterfaceTranslation(Labels.Back, userLang), $"{NavigationView}:{menu.Id}:{displayLang.ToLanguageTag()}")
-                }
-            };
+            });
 
             var buttonList = new List<InlineKeyboardButton[]>();
 

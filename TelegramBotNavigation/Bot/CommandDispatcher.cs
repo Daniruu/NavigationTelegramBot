@@ -16,27 +16,30 @@ namespace TelegramBotNavigation.Bot
 
         public async Task DispatchAsync(Message message, CancellationToken ct)
         {
-            var commandText = message.Text?.Split(' ')[0];
-            _logger.LogInformation($"Received command: {commandText}");
+            var parts = message.Text.Split(' ');
+            var command = parts[0].ToLower();
+            var args = parts.Skip(1).ToArray();
 
-            var handler = _handlers.FirstOrDefault(h => h.Command.Equals(commandText, StringComparison.OrdinalIgnoreCase));
+            _logger.LogInformation($"Received command: {command}");
+
+            var handler = _handlers.FirstOrDefault(h => h.Command.Equals(command, StringComparison.OrdinalIgnoreCase));
 
             if (handler != null)
             {
                 _logger.LogInformation($"Dispatch command to: {handler.GetType().Name}");
                 try
                 {
-                    await handler.HandleAsync(message, ct);
+                    await handler.HandleAsync(message, args, ct);
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"Error handling command: {commandText} by {handler.GetType().Name}");
+                    _logger.LogError(ex, $"Error handling command: {command} by {handler.GetType().Name}");
                 }
 
             }
             else
             {
-                _logger.LogWarning($"No handler found for command: {commandText}");
+                _logger.LogWarning($"No handler found for command: {command}");
             }
         }
     }

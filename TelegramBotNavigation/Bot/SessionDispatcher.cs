@@ -1,4 +1,5 @@
 ﻿using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 using TelegramBotNavigation.Bot.SessionHandlers;
 using TelegramBotNavigation.Services.Sessions;
 
@@ -18,6 +19,12 @@ namespace TelegramBotNavigation.Bot
         public async Task DispatchAsync(Message message, SessionData session, CancellationToken ct)
         {
             _logger.LogInformation($"Received session action: {session.Action}");
+
+            if (message.Chat.Type != ChatType.Private)
+            {
+                _logger.LogDebug("Skip session handling for non-private chat: {ChatId}", message.Chat.Id);
+                return;
+            }
 
             var handler = _handlers.FirstOrDefault(h => h.Action == session.Action);
             if (handler != null)

@@ -8,10 +8,14 @@
         public const string NavigationItemAddLabel = "navigation.item.add_label";
         public const string NavigationItemAddUrl = "navigation.item.add_value";
         public const string NavigationItemAddMessage = "navigation.item.add_message";
+        public const string NavigationAddSupportRequest = "nav.item.add_support_request";
         public const string NavigationItemEditLabel = "nav.item.edit.label";
         public const string NavigationItemEditUrl = "nav.item.edit.url";
         public const string NavigationItemEditMessage = "nav.item.edit.message";
         public const string NavigationHeaderEdit = "nav.header.edit";
+        public const string NavigationHeaderEditImage = "nav.header.edit.image";
         public const string NavigationItemAddSubmenu = "nav.item.add_submenu";
+        public const string SupportRequest = "SupportRequestMessage";
+        public const string SupportReply = "SupportReplyTo";
     }
 }

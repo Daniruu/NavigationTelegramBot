@@ -10,6 +10,8 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string Language = "commands.language";
             public const string Navigation = "commands.navigation";
             public const string Admin = "commands.admin";
+            public const string SetAdmin = "commands.set_admin";
+            public const string SetGroup = "commands.set_group";
         }
 
         public static class Labels
@@ -20,23 +22,19 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string Cancel = "labels.cancel";
             public const string Delete = "labels.delete";
             public const string Back = "labels.back";
-
-            public const string AdminPanel = "labels.admin.panel";
+            public const string AdminPanel = "labels.admin_panel";
             public const string NavigationManage = "labels.navigation.manage";
             public const string WelcomeManage = "labels.welcome.manage";
-            public const string BotSettings = "labels.bot.settings";
             public const string UsersManage = "labels.users.manage";
-            public const string SupportRequests = "labels.support.requests";
-
             public const string DeleteImage = "labels.delete_image";
             public const string AddNavigationMenu = "labels.add.navigation.menu";
             public const string DeleteNavigationMenu = "labels.delete.navigation.menu";
+            public const string DeleteNavigationMenuConfirm = "labels.delete.navigation.menu.confirm";
             public const string AddNavigationItem = "labels.add.navigation.item";
             public const string MenuItemTypeUrl = "labels.menu_item_type.url";
             public const string MenuItemTypeSubMenu = "labels.menu_item_type.sub_menu";
             public const string MenuItemTypeShowMessage = "labels.menu_item_type.show_message";
             public const string MenuItemTypeSupportRequest = "labels.menu_item_type.support_request";
-            public const string DeleteNavigationItem = "labels.delete.navigation.item";
             public const string ReorderNavigation = "labels.reorder.navigation";
             public const string EditNavigationItem = "labels.edit.navigation.item";
             public const string EditNavigationItemLabel = "labels.edit.navigation.item.label";
@@ -56,6 +54,14 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string ViewProfile = "labels.view_profile";
             public const string SortAsc = "labels.sort.asc";
             public const string SortDesc = "labels.sort.desc";
+            public const string Reply = "labels.reply";
+            public const string CloseRequest = "labels.close_request";
+            public const string NavigationDeleteHeaderImage = "labels.navigation.delete_header_image";
+            public const string NavigationHeaderEditImage = "labels.navigation.header_edit_image";
+            public const string NavigationDeleteHeader = "labels.navigation.delete_header";
+            public const string LanguageSettings = "labels.language_settings";
+            public const string SetAdmin = "labels.set_admin";
+            public const string UnsetAdmin = "labels.unset_admin";
         }
 
         public static class Headers
@@ -77,6 +83,10 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string UsersManage = "headers.users.manage";
             public const string UserDetails = "headers.user_details";
             public const string InteractionHistory = "headers.interaction_history";
+            public const string Settings = "headers.settings";
+            public const string SupportRequestManage = "headers.support_request.manage";
+            public const string LanguageSettings = "headers.language_settings";
+            public const string NaviagationSupportRequestEdit = "headers.navigation_support_edit";
         }
 
         public static class Messages
@@ -105,6 +115,14 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string UserSentMessage = "messages.user.sent_message";
             public const string UserRequestedSupport = "messages.user.requested_support";
             public const string UserInteractionUnknown = "messages.user.interaction_unknown";
+            public const string EnterSupportRequestMessage = "messages.enter.support_request_message";
+            public const string EnterSupportRequestReply = "messages.enter.support_request_reply";
+            public const string SupportReplyMessage = "messages.support.reply_message";
+            public const string DeleteHeaderImagePrompt = "messages.delete_header_image.prompt";
+            public const string NavigationHeaderImageEditPrompt = "messages.nav_header_image.edit.prompt";
+            public const string DeleteHeaderPrompt = "messages.delete_header.prompt";
+            public const string SetUserAdmin = "messages.set_admin";
+            public const string UnsetUserAdmin = "messages.unset_admin";
         }
 
         public static class Errors
@@ -123,7 +141,11 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string InvalidMenuItemId = "errors.invalid_menu_item_id";
             public const string InvalidUrl = "errors.invalid_url";
             public const string InvalidText = "errors.invalid_text";
-            public const string ItemNotFound = "errors.item_not_found"; 
+            public const string ItemNotFound = "errors.item_not_found";
+            public const string RequestNotFound = "errors.request_not_found";
+            public const string RequestAlreadyResolved = "errors.request_already_resolved";
+            public const string AlreadyAdmin = "errors.already_admin";
+            public const string AlreadyNotAdmin = "errors.already_not_admin";
         }
 
         public static class Notifications
@@ -138,6 +160,16 @@ namespace TelegramBotNavigation.Bot.Shared
             public const string WelcomeEditSuccess = "notifications.welcome.edit.success";
             public const string WelcomeImageRemoved = "notifications.welcome.image.removed";
             public const string NavigationDeleteSuccess = "notifications.navigation.delete.success";
+            public const string SupportRequestCreated = "notifications.support_request.created";
+            public const string SupportRequestReceived = "notifications.support_request.reply_received";
+            public const string SupportRequestReplySent = "notifications.support_request.reply_sent";
+            public const string SupportRequestResolved = "notifications.support_request.resolved";
+            public const string SupportRequestResolvedAdmin = "notifications.support_request.resolved_admin";
+            public const string RequestUserSessionClosed = "notifications.request_user_session_closed";
+            public const string UserSessionClosedPrompt = "notifications.user_session_closed_prompt";
+            public const string HeaderImageDeleted = "notifications.header_image.deleted";
+            public const string AdminSet = "notification.admin.set";
+            public const string AdminUnset = "notification.admin.unset";
         }
     }
 }

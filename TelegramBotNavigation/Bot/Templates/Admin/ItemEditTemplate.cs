@@ -36,9 +36,9 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
             {
                 text = await localizer.GetInterfaceTranslation(
                     LocalizationKeys.Headers.NavigationUrlItemEdit, userLang,
-                    await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "",
-                    await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "[No Label]",
-                    itemToEdit.Url);
+                        await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "",
+                        await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "[No Label]",
+                        itemToEdit.Url);
 
             actionButtons.Add(new[]
                 {
@@ -52,9 +52,9 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
             {
                 text = await localizer.GetInterfaceTranslation(
                     LocalizationKeys.Headers.NavigationMessageItemEdit, userLang,
-                    await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "",
-                    await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "[No Label]",
-                    await localizer.GetCustomTranslationAsync(itemToEdit.MessageTranslationKey!, displayLang) ?? "");
+                        await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "",
+                        await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "[No Label]",
+                        await localizer.GetCustomTranslationAsync(itemToEdit.MessageTranslationKey!, displayLang) ?? "");
 
                 actionButtons.Add(new[]
                 {
@@ -68,6 +68,14 @@ namespace TelegramBotNavigation.Bot.Templates.Admin
             {
                 text = await localizer.GetInterfaceTranslation(
                     LocalizationKeys.Headers.NavigationSubmenuItemEdit, userLang,
+                    await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "",
+                    await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "[No Label]");
+            }
+
+            else if (itemToEdit.ActionType == MenuActionType.SupportRequest)
+            {
+                text = await localizer.GetInterfaceTranslation(
+                    LocalizationKeys.Headers.NaviagationSupportRequestEdit, userLang,
                     await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "",
                     await localizer.GetCustomTranslationAsync(itemToEdit.LabelTranslationKey, displayLang) ?? "[No Label]");
             }

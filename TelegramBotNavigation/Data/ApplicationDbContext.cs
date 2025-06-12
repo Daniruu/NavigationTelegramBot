@@ -14,12 +14,14 @@ namespace TelegramBotNavigation.Data
         public DbSet<Menu> Menus { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<UserInteraction> UserInteractions { get; set; }
-        public DbSet<SupportRequest> SupportRequests { get; set; }
         public DbSet<WelcomeMessage> WelcomeMessages { get; set; }
         public DbSet<Translation> Translations { get; set; }
         public DbSet<TranslationImage> TranslationImages { get; set; }
         public DbSet<LanguageSetting> LanguageSettings { get; set; }
         public DbSet<NavigationMessage> NavigationMessages { get; set; }
+        public DbSet<SupportRequest> SupportRequests { get; set; }
+        public DbSet<SupportMessage> SupportMessages { get; set; }
+        public DbSet<BotSetting> BotSettings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -69,12 +71,6 @@ namespace TelegramBotNavigation.Data
                 .HasForeignKey(m => m.MenuId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<SupportRequest>()
-                .HasOne(s => s.User)
-                .WithMany()
-                .HasForeignKey(s => s.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             modelBuilder.Entity<MenuItem>()
                 .HasOne(mi => mi.SubMenu)
                 .WithMany()
@@ -91,6 +87,27 @@ namespace TelegramBotNavigation.Data
                 .HasOne(x => x.TelegramUser)
                 .WithMany()
                 .HasForeignKey(x => x.TelegramUserId);
+
+            modelBuilder.Entity<SupportRequest>()
+                .HasOne(r => r.User)
+                .WithMany()
+                .HasForeignKey(r => r.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SupportRequest>()
+                .HasMany(r => r.Messages)
+                .WithOne(m => m.SupportRequest)
+                .HasForeignKey(m => m.SupportRequestId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SupportMessage>()
+                .Property(m => m.Text)
+                .IsRequired()
+                .HasMaxLength(2000);
+
+            modelBuilder.Entity<SupportMessage>()
+                .Property(m => m.SentAt)
+                .HasDefaultValueSql("NOW()");
 
         }
     }

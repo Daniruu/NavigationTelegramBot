@@ -76,7 +76,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Common
                 ReplyMarkup = null
             };
 
-            await _userInteractionService.LogAsync(query.From, chatId, Enums.ActionType.ShowMessageClick, labelTranslationKey);
+            await _userInteractionService.LogAsync(user, chatId, Enums.ActionType.ShowMessageClick, labelTranslationKey);
 
             await _messageService.SendTemplateAsync(chatId, template, ct);
         }

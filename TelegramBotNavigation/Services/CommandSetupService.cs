@@ -3,6 +3,7 @@ using Telegram.Bot.Types;
 using TelegramBotNavigation.Bot.Shared;
 using TelegramBotNavigation.Models;
 using TelegramBotNavigation.Services.Interfaces;
+using static TelegramBotNavigation.Bot.Shared.LocalizationKeys;
 
 namespace TelegramBotNavigation.Services
 {
@@ -27,17 +28,17 @@ namespace TelegramBotNavigation.Services
                 new BotCommand
                 {
                     Command = "start",
-                    Description = await _localizer.GetInterfaceTranslation(LocalizationKeys.Commands.Start, user.LanguageCode)
+                    Description = await _localizer.GetInterfaceTranslation(Commands.Start, user.LanguageCode)
                 },
                 new BotCommand
                 {
                     Command = "language",
-                    Description = await _localizer.GetInterfaceTranslation(LocalizationKeys.Commands.Language, user.LanguageCode)
+                    Description = await _localizer.GetInterfaceTranslation(Commands.Language, user.LanguageCode)
                 },
                 new BotCommand
                 {
                     Command = "navigation",
-                    Description = await _localizer.GetInterfaceTranslation(LocalizationKeys.Commands.Navigation, user.LanguageCode)
+                    Description = await _localizer.GetInterfaceTranslation(Commands.Navigation, user.LanguageCode)
                 }
             };
 
@@ -46,7 +47,19 @@ namespace TelegramBotNavigation.Services
                 commands.Add(new BotCommand
                 {
                     Command = "admin",
-                    Description = await _localizer.GetInterfaceTranslation(LocalizationKeys.Commands.Admin, user.LanguageCode)
+                    Description = await _localizer.GetInterfaceTranslation(Commands.Admin, user.LanguageCode)
+                });
+
+                commands.Add(new BotCommand
+                {
+                    Command = "setadmin",
+                    Description = await _localizer.GetInterfaceTranslation(Commands.SetAdmin, user.LanguageCode)
+                });
+
+                commands.Add(new BotCommand
+                {
+                    Command = "setgroup",
+                    Description = await _localizer.GetInterfaceTranslation(Commands.SetGroup, user.LanguageCode)
                 });
             }
 

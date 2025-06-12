@@ -2,7 +2,7 @@
 {
     public interface ISessionManager
     {
-        Task SetSessionAsync(long userId, SessionData data, TimeSpan ttl);
+        Task SetSessionAsync(long userId, SessionData data, TimeSpan? ttl = null);
         Task<SessionData?> GetSessionAsync(long userId);
         Task ClearSessionAsync(long userId);
     }

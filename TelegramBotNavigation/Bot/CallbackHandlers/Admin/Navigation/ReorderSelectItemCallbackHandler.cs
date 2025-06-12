@@ -20,13 +20,15 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
         private readonly ILocalizationManager _localizer;
         private readonly ITelegramMessageService _messageService;
         private readonly IReorderSessionManager _reorderSessionManager;
+        private readonly ICallbackAlertService _callbackAlertService;
 
         public ReorderSelectItemCallbackHandler(
             IUserRepository userRepository, 
             IUserService userService, 
             ILogger<ReorderSelectItemCallbackHandler> logger, 
             ILocalizationManager localizer, ITelegramMessageService messageService, 
-            IReorderSessionManager reorderSessionManager)
+            IReorderSessionManager reorderSessionManager,
+            ICallbackAlertService callbackAlertService)
         {
             _userRepository = userRepository;
             _userService = userService;
@@ -34,6 +36,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             _localizer = localizer;
             _messageService = messageService;
             _reorderSessionManager = reorderSessionManager;
+            _callbackAlertService = callbackAlertService;
         }
 
         public async Task HandleAsync(CallbackQuery query, string[] args, CancellationToken ct)
@@ -49,8 +52,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("User {UserId} not found when trying to access admin command.", userId);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.NotAdmin, user.LanguageCode);
-                var errorTemplate = TelegramTemplate.Create(errorMessage);
-                await _messageService.SendTemplateAsync(chatId, errorTemplate, ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -61,7 +63,7 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             {
                 _logger.LogWarning("Invalid menuId format: {ItemIdStr}", itemIdStr);
                 var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.InvalidMenuItemId, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(errorMessage), ct);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
@@ -69,8 +71,8 @@ namespace TelegramBotNavigation.Bot.CallbackHandlers.Admin.Navigation
             if (session == null)
             {
                 _logger.LogWarning("No active reorder session found.");
-                var error = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.SessionDataMissing, user.LanguageCode);
-                await _messageService.SendTemplateAsync(chatId, TelegramTemplate.Create(error), ct);
+                var errorMessage = await _localizer.GetInterfaceTranslation(LocalizationKeys.Errors.SessionDataMissing, user.LanguageCode);
+                await _callbackAlertService.ShowAsync(query.Id, errorMessage, cancellationToken: ct);
                 return;
             }
 
